@@ -1,0 +1,31 @@
+{
+    "name": "wordpress-partners",
+    "description": "This is plugin for add partners, clients or sponsors information on website (create partner's: pages, lists and sliders).",
+    "type": "wordpress-plugin",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "wizzaro",
+        "wordpress",
+        "plugin",
+        "partners",
+        "partners-plugin"
+    ],
+    "homepage": "https://github.com/Wizzaro/wordpress-partners",
+    "authors": [
+        {
+            "name": "Przemysław Dziadek",
+            "email": "przemyslaw.dziadek@gmail.com",
+            "homepage": "http://www.wizzaro.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Wizzaro\\Partners\\": ["project/"]
+        }
+    },
+    "require": {
+        "php": "^5.5 || ^7.0",
+        "wizzaro/wordpress-framework-v1": "1.0.0"
+    }
+}
