@@ -2,13 +2,26 @@
 namespace Wizzaro\Partners;
 
 use Wizzaro\WPFramework\v1\Bootstrap\AbstractPluginBootstrap;
+use Wizzaro\WPFramework\v1\Helper\Arrays;
 
 use Wizzaro\Partners\Config\PluginConfig;
 
 class Plugin extends AbstractPluginBootstrap {
     
     protected function _get_config_file() {
-        return include __DIR__ . '/configuration/plugin.config.php';
+        $config = include __DIR__ . '/configuration/plugin.config.php';
+        
+        $local_config_file = WP_CONTENT_URL . DIRECTORY_SEPARATOR . 'wizzaro-partners' . DIRECTORY_SEPARATOR . 'plugin.config.local.php';
+        
+        if ( file_exists( $local_config_file ) ) {
+            $local_config = include $local_config_file;
+            
+            if ( is_array( $local_config ) ) {
+                $config['configuration'] = Arrays::get_instance()->deep_merge( $config['configuration'], $local_config );
+            }
+        }
+
+        return $config;
     }
     
     protected function _set_config( $config ) {

@@ -1,0 +1,170 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Wizzaro Partners\n"
+"POT-Creation-Date: 2016-07-27 20:01+0200\n"
+"PO-Revision-Date: 2016-07-27 20:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: wizzaro-partners.php\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: project/Component/Metabox/PartnerData.php:26
+msgid "Partner Data"
+msgstr "Dane partnera"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:13
+msgid "Street"
+msgstr "Ulica"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:16
+msgid "Add Street"
+msgstr "Dodaj ulicę"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:22
+msgid "Zip code"
+msgstr "Kod pocztowy"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:25
+msgid "Add zip code"
+msgstr "Dodaj kod pocztowy"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:31
+msgid "City"
+msgstr "Miasto"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:34
+msgid "Add City"
+msgstr "Dodaj miasto"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:44
+msgid "Phone"
+msgstr "Telefon"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:47
+msgid "Add Phone"
+msgstr "Dodaj telefon"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:57
+msgid "E-mail"
+msgstr "E-mail"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:60
+msgid "Add e-mail"
+msgstr "Dodaj adres e-mail"
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:70
+msgid "Website URL"
+msgstr "Link do strony internetowej."
+
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:73
+msgid "Add website URL"
+msgstr "Dodaj adres strony internetowej"
+
+#: project/configuration/plugin.config.local.sample.php:21
+#: project/configuration/plugin.config.local.sample.php:24
+#: project/configuration/plugin.config.php:23
+#: project/configuration/plugin.config.php:26
+msgid "Partners"
+msgstr "Partnerzy"
+
+#: project/configuration/plugin.config.local.sample.php:22
+#: project/configuration/plugin.config.php:24
+msgid "Partner"
+msgstr "Partner"
+
+#: project/configuration/plugin.config.local.sample.php:25
+#: project/configuration/plugin.config.php:27
+msgid "Add Partner"
+msgstr "Dodaj Partnera"
+
+#: project/configuration/plugin.config.local.sample.php:26
+#: project/configuration/plugin.config.php:28
+msgid "Add New Partner"
+msgstr "Dodaj nowego Partnera"
+
+#: project/configuration/plugin.config.local.sample.php:27
+#: project/configuration/plugin.config.local.sample.php:28
+#: project/configuration/plugin.config.php:29
+#: project/configuration/plugin.config.php:30
+msgid "Edit Partner"
+msgstr "Edytuj Partnera"
+
+#: project/configuration/plugin.config.local.sample.php:29
+#: project/configuration/plugin.config.php:31
+msgid "New Partner"
+msgstr "Nowy Partner"
+
+#: project/configuration/plugin.config.local.sample.php:30
+#: project/configuration/plugin.config.php:32
+msgid "No Partners found"
+msgstr "Nie istnieje żaden zdefiniowany Partner"
+
+#: project/configuration/plugin.config.local.sample.php:31
+#: project/configuration/plugin.config.php:33
+msgid "No Partners found in trash"
+msgstr "Nie znaleziono żadnego Partnera w koszu"
+
+#: project/configuration/plugin.config.php:34
+msgid "Logo"
+msgstr "Logo"
+
+#: project/configuration/plugin.config.php:35
+msgid "Set logo"
+msgstr "Ustaw jako logo"
+
+#: project/configuration/plugin.config.php:36
+msgid "Remove logo"
+msgstr "Usuń logo"
+
+#: project/configuration/plugin.config.php:37
+msgid "Use as logo"
+msgstr "Użyj jako logo"
+
+#: vendor/wizzaro/wordpress-framework-v1/src/Views/settings-page/fields/admin-field-wp-page.php:2
+msgid "----"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Wizzaro Partners"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/Wizzaro/wordpress-partners"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This is plugin for add partners, clients or sponsors information on website"
+msgstr ""
+"Jest to plugin do dodania informacji o partnerach, klientach, sponsorach "
+"itp. do strony"
+
+#. Author of the plugin/theme
+msgid "Wizzaro"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.wizzaro.com"
+msgstr ""
+
+#~ msgid "Site URL"
+#~ msgstr "Adres strony internetowej"
+
+#~ msgid "Add Site URL"
+#~ msgstr "Dodaj adres strony"
+
+#~ msgid "This widgets show the partners list."
+#~ msgstr "Ten widget wyświetla listę partnerów."
