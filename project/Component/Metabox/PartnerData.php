@@ -40,9 +40,12 @@ class PartnerData extends AbstractMetabox {
     }
     
     public function render( $post ) {
+        $post_type = PostTypes::get_instance()->get_post_type( $post->post_type );
+        
         View::get_instance()->render_view_for_instance( PluginConfig::get_instance()->get_view_templates_path(), $this, 'metabox', array(
             'languages_domain' => PluginConfig::get_instance()->get( 'languages', 'domain' ),
-            'partner_data_attributes' => PostTypes::get_instance()->get_post_type( $post->post_type )->get_setting( 'partner_data_attributes' ),
+            'post_type_option_instance' => $post_type->get_option_instance(),
+            'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
             'partner_data' => new PartnerDataEntity( $post->ID ) 
         ) );
     }
