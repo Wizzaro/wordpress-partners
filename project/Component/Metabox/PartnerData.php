@@ -45,6 +45,7 @@ class PartnerData extends AbstractMetabox {
         View::get_instance()->render_view_for_instance( PluginConfig::get_instance()->get_view_templates_path(), $this, 'metabox', array(
             'languages_domain' => PluginConfig::get_instance()->get( 'languages', 'domain' ),
             'post_type_option_instance' => $post_type->get_option_instance(),
+            'supports' => $post_type->get_setting( 'supports' ),
             'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
             'partner_data' => new PartnerDataEntity( $post->ID ) 
         ) );
