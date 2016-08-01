@@ -51,13 +51,41 @@ return array(
                     'slug' => 'partner-data'
                 )
             ),
-            'partner_data_attributes' => array(
+            'supports' => array(
                 'logo' => true,
-                'description' => true,
-                'address' => true,
-                'phone' => true,
-                'email' => true,
-                'website_url' => true
+                'content' => true,
+            ),
+            'partner_data_attributes' => array(
+                /*'position' => array(
+                    'use' => true,
+                    'type' => 'text',
+                    'title' => 'Position',
+                    'placeholder' => 'Add position'
+                ),*/
+                'address' => array(
+                    'use' => true,
+                    'type' => 'address',
+                    'title' => __('Address', 'wizzaro-partners'),
+                    'placeholder' =>  __('Add address', 'wizzaro-partners')
+                ),
+                'phone' => array(
+                    'use' => true,
+                    'type' => 'phone',
+                    'title' => __('Phone', 'wizzaro-partners'),
+                    'placeholder' =>  __('Add phone', 'wizzaro-partners')
+                ),
+                'email' => array(
+                    'use' => true,
+                    'type' => 'email',
+                    'title' => __('E-mail', 'wizzaro-partners'),
+                    'placeholder' =>  __('Add e-mail', 'wizzaro-partners')
+                ),
+                'website_url' => array(
+                    'use' => true,
+                    'type' => 'url',
+                    'title' => __('Website URL', 'wizzaro-partners'),
+                    'placeholder' =>  __('Add website URL', 'wizzaro-partners')
+                ),
             )
         )
     )

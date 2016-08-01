@@ -98,11 +98,11 @@ class PostType extends AbstractPluginController {
             
             $supports = array( 'title', 'revisions' );
         
-            if ( $post_type_settings['partner_data_attributes']['logo'] === true ) {
+            if ( $post_type_settings['supports']['logo'] === true ) {
                 array_push( $supports, 'thumbnail' );
             }
             
-            if ( $post_type_settings['partner_data_attributes']['description'] === true ) {
+            if ( $post_type_settings['supports']['content'] === true ) {
                 array_push( $supports, 'editor' );
             }
         
