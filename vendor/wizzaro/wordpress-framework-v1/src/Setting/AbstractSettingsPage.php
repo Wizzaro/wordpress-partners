@@ -1,12 +1,11 @@
 <?php
 namespace Wizzaro\WPFramework\v1\Setting;
 
-use Wizzaro\WPFramework\v1\AbstractSingleton; 
 use Wizzaro\WPFramework\v1\Helper\View;
 
-abstract class AbstractSettingsPage extends AbstractSingleton {
+abstract class AbstractSettingsPage {
     
-    private $_page_config;
+    protected $_page_config;
     
     private $_admin_tabs = array();
     private $_default_tab = '';
@@ -14,9 +13,9 @@ abstract class AbstractSettingsPage extends AbstractSingleton {
     
     private $_settings_fields = array();
     
-    public function __construct() {
+    public function __construct( array $page_config = array() ) {
         if ( is_admin() ) {
-            $this->_page_config = $this->get_page_config();
+            $this->_page_config = (object) array_merge( $this->get_page_config(), $page_config );
             
             add_action('admin_menu', array($this, 'add_options_page'));
             
@@ -35,7 +34,7 @@ abstract class AbstractSettingsPage extends AbstractSingleton {
     }
     
     protected function get_page_config() {
-        return (object) array(
+        return array(
             'page_title' => '',
             'menu_title' => '',
             'capability' => '',
@@ -268,7 +267,7 @@ abstract class AbstractSettingsPage extends AbstractSingleton {
         $value = $this->_get_field_value( $args );
         $args['value'] = $value;
 
-        View::get_instance()->render( $this->get_view_templates_path() . 'fields' . DIRECTORY_SEPARATOR . 'admin-field-select', $args, false, $this->get_view_templates_path() );
+        View::get_instance()->render( $this->get_view_templates_path() . 'fields' . DIRECTORY_SEPARATOR . 'admin-field-select.php', $args, false, $this->get_view_templates_path() );
         
         $this->render_field_description( $args );
     }
@@ -279,7 +278,7 @@ abstract class AbstractSettingsPage extends AbstractSingleton {
         $args['value'] = $value;
         $args['select_options'] = get_pages();
 
-        View::get_instance()->render( $this->get_view_templates_path() . 'fields' . DIRECTORY_SEPARATOR . 'admin-field-wp-page', $args, false, $this->get_view_templates_path() );
+        View::get_instance()->render( $this->get_view_templates_path() . 'fields' . DIRECTORY_SEPARATOR . 'admin-field-wp-page.php', $args, false, $this->get_view_templates_path() );
         
         $this->render_field_description( $args );
     }

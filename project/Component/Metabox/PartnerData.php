@@ -9,6 +9,7 @@ use Wizzaro\WPFramework\v1\Helper\View;
 use Wizzaro\Partners\Config\PluginConfig;
 
 use Wizzaro\Partners\Entity\PostMeta\PartnerData as PartnerDataEntity;
+use Wizzaro\Partners\Collections\PostTypes;
 
 class PartnerData extends AbstractMetabox {
     
@@ -36,7 +37,7 @@ class PartnerData extends AbstractMetabox {
     public function render( $post ) {
         View::get_instance()->render_view_for_instance( PluginConfig::get_instance()->get_view_templates_path(), $this, 'metabox', array(
             'languages_domain' => PluginConfig::get_instance()->get( 'languages', 'domain' ),
-            'partner_data_attributes' =>  PluginConfig::get_instance()->get_group( 'partner_data_attributes' ),
+            'partner_data_attributes' => PostTypes::get_instance()->get_post_type( $post->post_type )->get_setting( 'partner_data_attributes' ),
             'partner_data' => new PartnerDataEntity( $post->ID ) 
         ) );
     }

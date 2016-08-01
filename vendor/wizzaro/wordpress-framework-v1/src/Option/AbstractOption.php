@@ -1,13 +1,15 @@
 <?php
 namespace Wizzaro\WPFramework\v1\Option;
 
-use Wizzaro\WPFramework\v1\AbstractSingleton;
-
-abstract class AbstractOption extends AbstractSingleton {
+abstract class AbstractOption {
     
     protected $_options = array();
     
-    protected function __construct() {
+    public function __construct( array $options = array() ) {
+        if ( count( $options ) > 0 ) {
+            $this->_options = $options;
+        }
+        
         $this->load_options();
     }
     

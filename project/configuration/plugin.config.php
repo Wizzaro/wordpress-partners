@@ -18,11 +18,11 @@ return array(
             'domain' => 'wizzaro-partners'
         ),
         'default_post_type' => array(
+            'post_type' => 'wizzaro-partners',
             'slug' => 'partners',
             'labels'=> array(
                 'name'                  => __('Partners', 'wizzaro-partners'),
                 'singular_name'         => __('Partner', 'wizzaro-partners'),
-                'rewrite'               => array('slug' => 'partners'),
                 'menu_name'             => __('Partners', 'wizzaro-partners'),
                 'add_new'               => __( 'Add Partner', 'wizzaro-partners' ),
                 'add_new_item'          => __( 'Add New Partner', 'wizzaro-partners' ),
@@ -39,15 +39,26 @@ return array(
             'public' => true,
             'use_sliders' => true,
             'use_lists' => true,
-            'admin_menu_icon' => 'dashicons-groups'
-        ),
-        'partner_data_attributes' => array(
-            'logo' => true,
-            'description' => true,
-            'address' => true,
-            'phone' => true,
-            'email' => true,
-            'website_url' => true
+            'admin_menu_icon' => 'dashicons-groups',
+            'setting_page_config' => array(
+                'page_title' => __('Partners Settings', 'wizzaro-partners'),
+                'menu_title' => __('Partners Settings', 'wizzaro-partners'),
+                'menu_slug' => 'wizzaro-partners-settings'
+            ),
+            'settings_tabs' => array(
+                'partner_data' => array(
+                    'name' => __( 'Partner Data', 'wizzaro-partners' ),
+                    'slug' => 'partner-data'
+                )
+            ),
+            'partner_data_attributes' => array(
+                'logo' => true,
+                'description' => true,
+                'address' => true,
+                'phone' => true,
+                'email' => true,
+                'website_url' => true
+            )
         )
     )
 );

@@ -64,10 +64,10 @@ wp_nonce_field('wizzaro_partners_partner_data_edit_nounce', 'wizzaro_partners_pa
             
             //====================================================================================================
 
-            if ( $view_data['partner_data_attributes']['phone'] === true ) {
+            if ( $view_data['partner_data_attributes']['website_url'] === true ) {
                 ?>
                 <li>
-                    <label><?php _e( 'Website URL' ); ?></label>
+                    <label><?php _e( 'Website URL', $view_data['languages_domain'] ); ?></label>
                 </li>
                 <li>
                     <input class="large-text" name="wizzaro_partners_parner[website_url]" type="text" value="<?php echo esc_attr( $view_data['partner_data']->website_url ); ?>" placeholder="<?php _e( 'Add website URL', $view_data['languages_domain'] ); ?>">

@@ -1,25 +1,25 @@
 [
     {
         "name": "wizzaro/wordpress-framework-v1",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/Wizzaro/wordpress-framework-v1.git",
-            "reference": "427fc2957f92f5d5e1adc666d92cd07a624da736"
+            "reference": "4b5a6310f57a34bf5913daf560328e64381a7cfd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Wizzaro/wordpress-framework-v1/zipball/427fc2957f92f5d5e1adc666d92cd07a624da736",
-            "reference": "427fc2957f92f5d5e1adc666d92cd07a624da736",
+            "url": "https://api.github.com/repos/Wizzaro/wordpress-framework-v1/zipball/4b5a6310f57a34bf5913daf560328e64381a7cfd",
+            "reference": "4b5a6310f57a34bf5913daf560328e64381a7cfd",
             "shasum": ""
         },
         "require": {
             "php": "^5.5 || ^7.0"
         },
-        "time": "2016-07-26 17:23:42",
+        "time": "2016-08-01 13:42:59",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-4": {
                 "Wizzaro\\WPFramework\\v1\\": "src/"
