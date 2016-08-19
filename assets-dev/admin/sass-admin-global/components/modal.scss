@@ -1,0 +1,109 @@
+.wizzaro-modal-container {
+    display: none;
+}
+
+.wizzaro-modal {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    z-index: 160000;
+    
+    .wizzaro-modal-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        z-index: 1000;
+        line-height: 48px;
+        text-align: center;
+        color: #666;
+        -webkit-font-smoothing: antialiased;
+        
+        &:hover {
+            color: #00a0d2;
+        }
+        
+        
+        span {
+            vertical-align: middle;
+        }
+    }
+    
+    .wizzaro-modal-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        min-height: 300px;
+        @include box-shadow( 0 5px 15px rgba(0,0,0,0.7));
+        background: #fcfcfc;
+        -webkit-font-smoothing: subpixel-antialiased;
+        font-smoothing: subpixel-antialiased;
+    }
+    
+    .wizzaro-modal-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 50px;
+    
+        h1 {
+            padding: 0 66px 0 16px;
+            font-size: 22px;
+            line-height: 50px;
+            margin: 0;
+        }
+    }
+    
+    .wizzaro-modal-menu {
+        padding:16px;
+        border-bottom: 1px solid #ddd;
+        
+        a, button {
+            vertical-align: middle;
+        }
+    }
+    
+    
+    .wizzaro-modal-content {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+        bottom: 61px;
+        height: auto;
+        margin: 0;
+        overflow: auto;
+        background: #fff;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .wizzaro-modal-toolbar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 60px;
+        z-index: 100;
+        padding: 0 16px;
+        text-align: right;
+        line-height: 57px;
+        
+        .button {
+            vertical-align: middle;
+        }
+    }
+}
+
+body.wizzaro-modal-open {
+    overflow: hidden;
+}

@@ -1,0 +1,13 @@
+$button-delete: (
+    color: #fff, 
+    background: get_admin_color( Delete Colors ),
+    border-color: darken( adjust-hue( get_admin_color( Delete Colors ), 2.3150 ), 3.1373 ),
+    shadow-color: darken( adjust-hue( get_admin_color( Delete Colors ), 2.3150 ), 3.1373 )
+);
+
+$button-delete-hover: (
+    color: #fff,
+    background: get_admin_color( Delete Colors, hover ),
+    border-color: darken( adjust-hue( get_admin_color( Delete Colors, hover ), 2.3150 ), 3.1373 ),
+    shadow-color: darken( adjust-hue( get_admin_color( Delete Colors, hover ), 2.3150 ), 3.1373 )
+);

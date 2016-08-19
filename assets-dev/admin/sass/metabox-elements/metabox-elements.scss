@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+//Import global
+@import '../../../sass-global/style';
+
+//Import admin global
+@import '../../sass-admin-global/style';
+
+//Import components
+@import 'components/binder-components';

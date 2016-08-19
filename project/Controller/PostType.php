@@ -8,7 +8,7 @@ use Wizzaro\Partners\Component\Metabox\PartnerData;
 use Wizzaro\Partners\Collections\PostTypes as PostTypesCollection;
 use Wizzaro\Partners\Entity\PostType as PostTypeEntity;
 use Wizzaro\Partners\Entity\PostMeta\PartnerData as PartnerDataEntity;
-use Wizzaro\Partners\Config\PluginConfig;
+use \Exception;
 
 class PostType extends AbstractPluginController {
     
@@ -25,6 +25,8 @@ class PostType extends AbstractPluginController {
         
         add_action( 'wizzaro_partners_after_register_post_types', array( $this, 'action_set_post_data_metabox_screens' ) );
         add_action( 'wizzaro_partners_after_register_post_types', array( $this, 'action_create_settings_pages_for_post_types' ) );
+        
+        add_action( 'wp_ajax_' . $this->_config->get( 'ajax_actions', 'metabox_elements_sync' ), array( $this, 'ajax_action_elements_sync' ) );
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -141,7 +143,7 @@ class PostType extends AbstractPluginController {
             switch( $post_type->get_option_instance()->get_option( $post->post_type . '-partner-data', 'display_place' ) ) {
                 case 'before':
                     $content = $this->get_view( 'partner-data', array(
-                            'languages_domain' => PluginConfig::get_instance()->get( 'languages', 'domain' ),
+                            'languages_domain' => $this->_config->get( 'languages', 'domain' ),
                             'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
                             'partner_data' => new PartnerDataEntity( $post->ID ) 
                         )
@@ -149,7 +151,7 @@ class PostType extends AbstractPluginController {
                     break;
                 case 'after':
                     $content = $content . $this->get_view( 'partner-data', array(
-                            'languages_domain' => PluginConfig::get_instance()->get( 'languages', 'domain' ),
+                            'languages_domain' => $this->_config->get( 'languages', 'domain' ),
                             'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
                             'partner_data' => new PartnerDataEntity( $post->ID ) 
                         )
@@ -167,7 +169,7 @@ class PostType extends AbstractPluginController {
         
         if ( $post_type ) {
             return $this->get_view( 'partner-data', array(
-                    'languages_domain' => PluginConfig::get_instance()->get( 'languages', 'domain' ),
+                    'languages_domain' => $this->_config->get( 'languages', 'domain' ),
                     'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
                     'partner_data' => new PartnerDataEntity( $post->ID ) 
                 )
@@ -196,5 +198,49 @@ class PostType extends AbstractPluginController {
                 );
             }
         }
+    }
+    
+    public function ajax_action_elements_sync() {
+        $response = array( 'status' => false );
+        
+        $languages_domain = $this->_config->get( 'languages', 'domain' );
+        
+        try {
+            if( ! is_admin() || ! isset( $_POST['nounce'] ) || ! wp_verify_nonce( $_POST['nounce'], 'wizzaro_partners_elements_sync_nonce' ) || ! isset( $_POST['elements_post_type'] ) ) {
+                throw new Exception( __( 'Error during download elements', $languages_domain ) );
+            }
+
+            $post_type = PostTypesCollection::get_instance()->get_post_type( $_POST['elements_post_type'] );
+            
+            if ( ! $post_type ) {
+                throw new Exception( __( 'Unknown post type', $languages_domain ) );
+            }
+            
+            
+            $args = array(
+                'posts_per_page' => -1,
+                'post_type' => $post_type->get_setting( 'post_type' ),
+                'orderby' => 'title',
+                'order' => 'ASC'
+            );
+            
+            $elements = get_posts( $args );
+            
+            $response['status'] = true;
+            $response['elements'] = array();
+            
+            foreach( $elements as $element ) {
+                array_push( $response['elements'], array(
+                    'id' => (string) $element->ID,
+                    'name' => $element->post_title,
+                    'image_src' => wp_get_attachment_url( get_post_thumbnail_id( $element->ID ) )
+                ));
+            }
+        } catch(Exception $e) {
+            $response['message'] = $e->getMessage();
+        }
+
+        wp_send_json( $response );
+        die();
     }
 }

@@ -1,0 +1,129 @@
+.wizzaro-partners-metabox-elements {
+    padding: 12px;
+    
+    .wpme-error,
+    .wpme-no-elements {
+        //font-size: 18px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    
+    .wpme-error {
+        color: map_get( $button-delete, background );
+    }
+    
+    .wpme-list {
+        
+        .wpme-l-elem {
+            margin-bottom: 5px;
+            border: 1px solid #dfdfdf;
+            background: #fff;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+            
+            &.ui-sortable-handle {
+                cursor: move;
+            }
+            
+            &.ui-sortable-helper {
+                border-color: get_admin_color( Link Colors );
+            }
+            
+            .wpme-l-elem-wrapper {
+                display: table;
+                width: 100%;
+                min-height: 45px;
+                table-layout: fixed;
+                
+                .wpme-l-e-select,
+                .wpme-l-e-logo,
+                .wpme-l-e-name,
+                .wpme-l-e-del {
+                    display: table-cell;
+                    padding: 7px;
+                    vertical-align: middle;
+                }
+                
+                .wpme-l-e-select {
+                    width: 30px;
+                    text-align: center;
+                    
+                    a {
+                        display: block;
+                        width: 20px;
+                        height: 20px;
+                        border: 1px solid #dfdfdf;
+                        margin: 0 auto;
+                        line-height: 20px;
+                        text-decoration: none;
+                        
+                        &:hover {
+                            border-color: get_admin_color( Link Colors, hover );
+                        }
+                        
+                        span {
+                            display: none;
+                        }
+                    }
+                }
+                
+                .wpme-l-e-logo {
+                    width: 70px;
+                    
+                    img {
+                        display: block;
+                        width: auto;
+                        height: auto;
+                        max-width: 80%;
+                        max-height: (45px - 14px);
+                        margin: auto; 
+                    }
+                    
+                }
+                
+                .wpme-l-e-del {
+                    width: 30px;
+                    text-align: center;
+                    
+                    a {
+                        text-decoration: none;
+                        color: get_admin_color( Delete Colors );
+                        
+                        &:hover {
+                            color: get_admin_color( Delete Colors, hover );
+                        }
+                    }
+                }
+            }
+            
+            &.wpme-l-elem-selected .wpme-l-elem-wrapper .wpme-l-e-select span {
+                display: inline;
+            }
+        }
+        
+        .wpme-l-elem-placeholder {
+            display: block;
+            width: 100%;
+            height: 34px;
+            border: 1px dashed #dfdfdf;
+            margin-bottom: 5px;
+        }
+    } 
+}
+
+#wizzaro-partners-metabox-added-elements {
+    padding: 6px 0;
+    
+    .wpme-menu {
+        margin: 12px 0;
+    }
+    
+    .wpme-list {
+        margin: 12px 0;
+        border-top: 1px solid get_admin_color( HR Line );
+        border-bottom: 1px solid get_admin_color( HR Line );
+        padding: 12px 0;
+    }
+}

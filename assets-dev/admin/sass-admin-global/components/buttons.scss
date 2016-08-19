@@ -1,0 +1,30 @@
+.wp-core-ui .button-delete {
+    background: map_get( $button-delete, background );
+    border-color: map_get( $button-delete, border-color ) map_get( $button-delete, shadow-color ) map_get( $button-delete, shadow-color );
+    -webkit-box-shadow: 0 1px 0 map_get( $button-delete, shadow-color );
+    box-shadow: 0 1px 0 map_get( $button-delete, shadow-color );
+    color: map_get( $button-delete, color );
+    text-decoration: none;
+    text-shadow: 0 -1px 1px map_get( $button-delete, shadow-color ),1px 0 1px map_get( $button-delete, shadow-color ),0 1px 1px map_get( $button-delete, shadow-color ),-1px 0 1px map_get( $button-delete, shadow-color );
+    
+    &:active,
+    &:focus {
+        background: map_get( $button-delete, background );
+        border-color: map_get( $button-delete, border-color ) map_get( $button-delete, shadow-color ) map_get( $button-delete, shadow-color );
+        -webkit-box-shadow: 0 1px 0 map_get( $button-delete, shadow-color );
+        box-shadow: 0 1px 0 map_get( $button-delete, shadow-color );
+        color: map_get( $button-delete, color );
+        text-decoration: none;
+        text-shadow: 0 -1px 1px map_get( $button-delete, shadow-color ),1px 0 1px map_get( $button-delete, shadow-color ),0 1px 1px map_get( $button-delete, shadow-color ),-1px 0 1px map_get( $button-delete, shadow-color );
+    }
+    
+    &:hover {
+        background: map_get( $button-delete-hover, background );
+        border-color: map_get( $button-delete-hover, border-color ) map_get( $button-delete-hover, shadow-color ) map_get( $button-delete-hover, shadow-color );
+        -webkit-box-shadow: 0 1px 0 map_get( $button-delete-hover, shadow-color );
+        box-shadow: 0 1px 0 map_get( $button-delete-hover, shadow-color );
+        color: map_get( $button-delete-hover, color );
+        text-decoration: none;
+        text-shadow: 0 -1px 1px map_get( $button-delete-hover, shadow-color ),1px 0 1px map_get( $button-delete-hover, shadow-color ),0 1px 1px map_get( $button-delete-hover, shadow-color ),-1px 0 1px map_get( $button-delete-hover, shadow-color );
+    }
+}

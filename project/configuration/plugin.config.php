@@ -5,7 +5,8 @@ use Wizzaro\Partners\Texts\PluginTexts;
 
 return array(
     'controllers' => array(
-        'Wizzaro\Partners\Controller\PostType'
+        'Wizzaro\Partners\Controller\PostType',
+        'Wizzaro\Partners\Controller\Slider'
     ),
     'configuration' => array(
         'path' => array(
@@ -16,6 +17,9 @@ return array(
         ),
         'languages' => array(
             'domain' => 'wizzaro-partners'
+        ),
+        'ajax_actions' => array(
+            'metabox_elements_sync' => 'wizzaro_wizzaro_partners_metabox_elements_sync'
         ),
         'default_post_type' => array(
             'post_type' => 'wizzaro-partners',
@@ -38,7 +42,12 @@ return array(
             ),
             'public' => true,
             'use_sliders' => true,
+            'sliders_settings' => array(
+                'post_type' => 'wizzaro-partners-s',
+                'shordcode' => 'wizzaro-partners-slider'
+            ),
             'use_lists' => true,
+            'lists_post_type' => 'wizzaro-partners-l',
             'admin_menu_icon' => 'dashicons-groups',
             'setting_page_config' => array(
                 'page_title' => __('Partners Settings', 'wizzaro-partners'),
@@ -86,6 +95,18 @@ return array(
                     'title' => __('Website URL', 'wizzaro-partners'),
                     'placeholder' =>  __('Add website URL', 'wizzaro-partners')
                 ),
+            ),
+            //this is for current partner post type
+            'taxonomies' => array(
+                'wizzaro-partners-categories' => array(
+                    'config' => array(),
+                )
+            )
+        ),
+        //this is for all partners post types
+        'taxonomies' => array(
+            'wizzaro-partners-categories' => array(
+                'config' => array(),
             )
         )
     )

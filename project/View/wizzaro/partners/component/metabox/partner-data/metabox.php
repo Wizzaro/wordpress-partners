@@ -1,6 +1,4 @@
 <?php
-use Wizzaro\Partners\Texts\PluginTexts;
-
 wp_nonce_field('wizzaro_partners_partner_data_edit_nounce', 'wizzaro_partners_partner_data_edit');
 ?>
 <div class="panel-wrap">

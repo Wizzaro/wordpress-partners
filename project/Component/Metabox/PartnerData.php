@@ -29,7 +29,7 @@ class PartnerData extends AbstractMetabox {
         if ( ! $this->_config ) {
             $this->_config = array(
                 'id' => 'wizzaro-partners-partner-data',
-                'title' => __( 'Partner Data', PluginConfig::get_instance()->get( 'languages', 'domain' ) ),
+                'title' => __( 'Data', PluginConfig::get_instance()->get( 'languages', 'domain' ) ),
                 'screen' => array(),
                 'context' => 'normal',
                 'priority' => 'high'
