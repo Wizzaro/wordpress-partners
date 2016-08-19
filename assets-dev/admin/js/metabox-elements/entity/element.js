@@ -1,6 +1,16 @@
 Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.Entity');
 Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element = Backbone.Model.extend({
     
+    defaults: function() {
+        return {
+            id: null,
+            image_src: null,
+            name: null,
+            select: false,
+            show: true,
+        };
+    },
+    
     destroy: function(options) {
         options = options ? _.clone( options ) : {};
         var model = this;
@@ -22,16 +32,6 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element = Backbone.Model.exte
         _.defer(options.success);
         if ( ! wait ) destroy();
         return xhr;
-    },
-    
-    defaults: function() {
-        return {
-            id: null,
-            image_src: null,
-            name: null,
-            select: false,
-            show: true,
-        };
     },
     
     select: function() {

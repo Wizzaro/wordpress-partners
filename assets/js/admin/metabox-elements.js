@@ -78,6 +78,16 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.Config = Wizzaro.Plugins.Partners.v1
 Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.Entity');
 Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element = Backbone.Model.extend({
     
+    defaults: function() {
+        return {
+            id: null,
+            image_src: null,
+            name: null,
+            select: false,
+            show: true,
+        };
+    },
+    
     destroy: function(options) {
         options = options ? _.clone( options ) : {};
         var model = this;
@@ -99,16 +109,6 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element = Backbone.Model.exte
         _.defer(options.success);
         if ( ! wait ) destroy();
         return xhr;
-    },
-    
-    defaults: function() {
-        return {
-            id: null,
-            image_src: null,
-            name: null,
-            select: false,
-            show: true,
-        };
     },
     
     select: function() {
@@ -347,22 +347,29 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
 Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.View');
 Wizzaro.Plugins.Partners.v1.MetaboxElements.View.Element = Backbone.View.extend({
     config: null,
+    template: null,
     
     initialize: function( options ) {
         this.config = options.config;
-
-        if ( options.use_template !== false ) {
-            var template = _.template( jQuery( this.config.view_template ).html() );
-            this.$el.addClass( this.config.container_class );
-            this.$el.html( template( this.model.toJSON() ) );
-        }
+        this.template = _.template( jQuery( this.config.view_template ).html() );
+        
+        this.render( options.use_template );
         
         this.$el.attr( this.config.view_id_attr_key, this.model.get( 'id' ) );
 
         this.listenTo( this.model, 'change:select', this.markSelected );
         this.listenTo( this.model, 'change:show', this.changeShow );
+        this.listenTo( this.model, 'change:id', this.render );
+        this.listenTo( this.model, 'change:name', this.render );
+        this.listenTo( this.model, 'change:image_src', this.render );
         this.listenTo( this.model, 'destroy', this.destroyModel );
-        
+    },
+    
+    render: function( render_template ) {
+        if ( render_template !== false ) {
+            this.$el.addClass( this.config.container_class );
+            this.$el.html( this.template( this.model.toJSON() ) );
+        }
         
         this.$el.find( this.config.select_elem_button ).on( 'click', this.select.bind( this ) );
         
