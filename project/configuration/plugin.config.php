@@ -6,7 +6,8 @@ use Wizzaro\Partners\Texts\PluginTexts;
 return array(
     'controllers' => array(
         'Wizzaro\Partners\Controller\PostType',
-        'Wizzaro\Partners\Controller\Slider'
+        'Wizzaro\Partners\Controller\Slider',
+        'Wizzaro\Partners\Controller\Lists'
     ),
     'configuration' => array(
         'path' => array(
