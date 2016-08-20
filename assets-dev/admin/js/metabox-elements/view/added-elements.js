@@ -29,22 +29,37 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         jQuery.each( this.$el.find( this.config.elems_list ).find( this.config.element.container ), function( index, value ) {
             var elem = jQuery( value );
             
-            var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element({
-                id: String( elem.find( this.config.element.id_elem ).val() ),
-                image_src: elem.find( this.config.element.logo_elem ).attr( 'src' ),
-                name: elem.find( this.config.element.name_elem ).text() 
-            });
-            
-            this.collection.add( model );
-            
-            var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.Element({
-                el: elem,
-                model: model,
-                config: this.config.element,
-                use_template: false
-            });
-            
-            this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+            if ( ! elem.hasClass( this.config.element.breal_line_container_class ) ) {
+                var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element({
+                    id: String( elem.find( this.config.element.id_elem ).val() ),
+                    image_src: elem.find( this.config.element.logo_elem ).attr( 'src' ),
+                    name: elem.find( this.config.element.name_elem ).text() 
+                });
+                
+                this.collection.add( model );
+                
+                var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.Element({
+                    el: elem,
+                    model: model,
+                    config: this.config.element,
+                    use_template: false
+                });
+                
+                this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+            } else {
+                var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.BreakLine();
+                
+                this.collection.add( model );
+                
+                var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.BreakLine({
+                    el: elem,
+                    model: model,
+                    config: this.config.element,
+                    use_template: false
+                });
+                
+                this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+            }
         }.bind( this ) );
 
         this.no_added_elements_modal = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.NoAddedElements();
@@ -61,6 +76,11 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         
         this.$el.find( this.config.select_all_elems_button ).on( 'click', this.selectAllElems.bind( this ) );
         this.$el.find( this.config.unselect_all_elems_button ).on( 'click', this.unSelectAllElems.bind( this ) );
+        
+        var add_break_line_button = this.$el.find( this.config.add_break_line_button );
+        if ( add_break_line_button.length > 0 ) {
+            add_break_line_button.on( 'click', this.addBreakLine.bind( this ) );
+        }
         
         this.$remove_elements_button.on( 'click', this.removeSelectedElements.bind( this ) );
     },
@@ -113,6 +133,28 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         this.$elements_list.sortable( 'refresh' );
         this.checkEmptyInfo();
         this.$loader.hide();
+    },
+    
+    addBreakLine: function() {
+        if ( this.$elements_list.find( '> ' + this.config.element.container ).length <= 0 ) {
+            this.$elements_list.html( '' );
+        }
+        
+        var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.BreakLine();
+                
+        this.collection.add( model );
+        
+        var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.BreakLine({
+            model: model,
+            config: this.config.element,
+        });
+        
+        this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+        
+        this.$elements_list.append( view.$el );
+        
+        this.$elements_list.sortable( 'refresh' );
+        this.checkEmptyInfo();
     },
     
     toggleDeleteElemsButtonVisible: function() {

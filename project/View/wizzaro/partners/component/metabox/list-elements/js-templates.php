@@ -84,6 +84,26 @@
 <?php 
     //----------------------------------------------------------------------------------------------------
 ?>
+<script type="text/template" id="wizzaro-partners-metabox-break-line-element">
+    <div class="wpme-l-elem-wrapper">
+        <div class="wpme-l-e-select">
+            <a href="#">
+                <span class="dashicons dashicons-yes"></span>
+            </a>
+        </div>
+        <div class="wpme-l-e-break-line">
+        </div>
+        <div class="wpme-l-e-del">
+            <a href="#">
+                <span class="dashicons dashicons-trash"></span>
+            </a>
+        </div>
+    </div>
+    <input class="wpme-l-e-id" type="hidden" name="<?php echo $view_data['input_name']; ?>[]" value="break">
+</script>
+<?php 
+    //----------------------------------------------------------------------------------------------------
+?>
 <script type="text/template" id="wizzaro-partners-metabox-no-elements">
     <div class="wpme-no-elements">
         <?php _e( 'No elements to display', $view_data['languages_domain'] ); ?>

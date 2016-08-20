@@ -54,7 +54,7 @@ wp_nonce_field('wizzaro_partners_elements_edit_nounce', 'wizzaro_partners_elemen
                                     </a>
                                 </div>
                             </div>
-                            <input class="wpme-l-e-id" type="hidden" name="wizzaro_partner_elems_list[]" value="<?php echo $element->ID; ?>">
+                            <input class="wpme-l-e-id" type="hidden" name="<?php echo $view_data['input_name']; ?>[]" value="<?php echo $element->ID; ?>">
                         </div>
                         <?php
                     }

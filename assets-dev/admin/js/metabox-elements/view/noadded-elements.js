@@ -188,10 +188,12 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.NoAddedElements = Backbone.View
     },
     
     redisplayElement: function( added_model ) {
-        var model = this.collection.findWhere( { id: added_model.get( 'id' ) } );
-        
-        if ( ! _.isUndefined( model ) ) {
-            model.show();
+        if ( added_model.has( 'id' ) ) {
+            var model = this.collection.findWhere( { id: added_model.get( 'id' ) } );
+            
+            if ( ! _.isUndefined( model ) ) {
+                model.show();
+            }
         }
     },
 });

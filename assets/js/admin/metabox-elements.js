@@ -32,15 +32,19 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.Config = Wizzaro.Plugins.Partners.v1
         container: '#wizzaro-partners-metabox-added-elements',
         elems_list: '.wpme-list',
         add_new_elem_button: '.wpme-add-bt',
+        add_break_line_button: '.wpme-add-break-line-bt',
         remove_elems_button: '.wpme-remove-selected-bt',
         select_all_elems_button: '.wpme-select-all',
         unselect_all_elems_button: '.wpme-unselect-all',
         loader_elem: '.wizzaro-spiner',
         element: {
             view_template: '#wizzaro-partners-metabox-added-element',
+            view_break_line_template: '#wizzaro-partners-metabox-break-line-element',
             view_id_attr_key: 'data-model-view',
             container: '.wpme-l-elem',
             container_class: 'wpme-l-elem',
+            breal_line_container: 'wpme-l-elem-break-line',
+            breal_line_container_class: 'wpme-l-elem-break-line',
             id_elem: '.wpme-l-e-id',
             logo_elem: '.wpme-l-e-logo img',
             name_elem: '.wpme-l-e-name',
@@ -75,6 +79,55 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.Config = Wizzaro.Plugins.Partners.v1
         }
     },
 };
+Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.Entity');
+Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.BreakLine = Backbone.Model.extend({
+    
+    defaults: function() {
+        return {
+            select: false,
+            show: true
+        };
+    },
+    
+    destroy: function(options) {
+        options = options ? _.clone( options ) : {};
+        var model = this;
+        var success = options.success;
+        var wait = options.wait;
+
+        var destroy = function() {
+            model.stopListening();
+            model.trigger('destroy', model, model.collection, options);
+        };
+
+        options.success = function( resp ) {
+            if ( wait ) destroy();
+            if ( success ) success.call( options.context, model, resp, options );
+            if ( ! model.isNew() ) model.trigger( 'sync', model, resp, options );
+        };
+
+        var xhr = false;
+        _.defer(options.success);
+        if ( ! wait ) destroy();
+        return xhr;
+    },
+    
+    select: function() {
+        this.set( 'select', true );
+    },
+    
+    unselect: function() {
+        this.set( 'select', false );
+    },
+    
+    toggleSelect: function() {
+        if ( this.get( 'select' ) === true ) {
+            this.unselect();
+        } else {
+            this.select();
+        }
+    }
+});
 Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.Entity');
 Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element = Backbone.Model.extend({
     
@@ -225,22 +278,37 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         jQuery.each( this.$el.find( this.config.elems_list ).find( this.config.element.container ), function( index, value ) {
             var elem = jQuery( value );
             
-            var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element({
-                id: String( elem.find( this.config.element.id_elem ).val() ),
-                image_src: elem.find( this.config.element.logo_elem ).attr( 'src' ),
-                name: elem.find( this.config.element.name_elem ).text() 
-            });
-            
-            this.collection.add( model );
-            
-            var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.Element({
-                el: elem,
-                model: model,
-                config: this.config.element,
-                use_template: false
-            });
-            
-            this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+            if ( ! elem.hasClass( this.config.element.breal_line_container_class ) ) {
+                var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.Element({
+                    id: String( elem.find( this.config.element.id_elem ).val() ),
+                    image_src: elem.find( this.config.element.logo_elem ).attr( 'src' ),
+                    name: elem.find( this.config.element.name_elem ).text() 
+                });
+                
+                this.collection.add( model );
+                
+                var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.Element({
+                    el: elem,
+                    model: model,
+                    config: this.config.element,
+                    use_template: false
+                });
+                
+                this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+            } else {
+                var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.BreakLine();
+                
+                this.collection.add( model );
+                
+                var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.BreakLine({
+                    el: elem,
+                    model: model,
+                    config: this.config.element,
+                    use_template: false
+                });
+                
+                this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+            }
         }.bind( this ) );
 
         this.no_added_elements_modal = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.NoAddedElements();
@@ -257,6 +325,11 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         
         this.$el.find( this.config.select_all_elems_button ).on( 'click', this.selectAllElems.bind( this ) );
         this.$el.find( this.config.unselect_all_elems_button ).on( 'click', this.unSelectAllElems.bind( this ) );
+        
+        var add_break_line_button = this.$el.find( this.config.add_break_line_button );
+        if ( add_break_line_button.length > 0 ) {
+            add_break_line_button.on( 'click', this.addBreakLine.bind( this ) );
+        }
         
         this.$remove_elements_button.on( 'click', this.removeSelectedElements.bind( this ) );
     },
@@ -311,6 +384,28 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         this.$loader.hide();
     },
     
+    addBreakLine: function() {
+        if ( this.$elements_list.find( '> ' + this.config.element.container ).length <= 0 ) {
+            this.$elements_list.html( '' );
+        }
+        
+        var model = new Wizzaro.Plugins.Partners.v1.MetaboxElements.Entity.BreakLine();
+                
+        this.collection.add( model );
+        
+        var view = new Wizzaro.Plugins.Partners.v1.MetaboxElements.View.BreakLine({
+            model: model,
+            config: this.config.element,
+        });
+        
+        this.listenTo( model, 'change:select', this.toggleDeleteElemsButtonVisible );
+        
+        this.$elements_list.append( view.$el );
+        
+        this.$elements_list.sortable( 'refresh' );
+        this.checkEmptyInfo();
+    },
+    
     toggleDeleteElemsButtonVisible: function() {
         if ( this.collection.getSelectedElements().length > 0 ) {
             this.$remove_elements_button.attr( 'disabled', false );
@@ -342,6 +437,66 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.AddedElements = Backbone.View.e
         if ( selected_elems.length > 0 && confirm( wpWizzaroPartnersMetaboxElementsConfig.l10n.delete_elements ) ) {
             _.invoke( selected_elems, 'destroy' );
         }
+    }
+});
+Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.View');
+Wizzaro.Plugins.Partners.v1.MetaboxElements.View.BreakLine = Backbone.View.extend({
+    config: null,
+    template: null,
+    
+    initialize: function( options ) {
+        this.config = options.config;
+        this.template = _.template( jQuery( this.config.view_break_line_template ).html() );
+        
+        this.render( options.use_template );
+        
+        this.$el.attr( this.config.view_id_attr_key, this.model.get( 'id' ) );
+
+        this.listenTo( this.model, 'change:select', this.markSelected );
+        this.listenTo( this.model, 'destroy', this.destroyModel );
+    },
+    
+    render: function( render_template ) {
+        if ( render_template !== false ) {
+            this.$el.addClass( this.config.container_class );
+            this.$el.addClass( this.config.breal_line_container_class );
+            this.$el.html( this.template( this.model.toJSON() ) );
+        }
+        
+        this.$el.find( this.config.select_elem_button ).on( 'click', this.select.bind( this ) );
+        
+        var delete_button = this.$el.find( this.config.delete_elem_button );
+        
+        if ( delete_button.length > 0 ) {
+            this.$el.find( this.config.delete_elem_button ).on( 'click', this.delete.bind( this ) );
+        }
+    },
+    
+    select: function( event ) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.model.toggleSelect();
+    },
+    
+    markSelected: function() {
+        if ( this.model.get( 'select' ) === true ) {
+            this.$el.addClass( this.config.selected_class );
+        } else {
+            this.$el.removeClass( this.config.selected_class );
+        }
+    },
+    
+    delete: function( event ) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        if ( confirm( wpWizzaroPartnersMetaboxElementsConfig.l10n.delete_element ) ) {
+            this.model.destroy();
+        }
+    },
+    
+    destroyModel: function() {
+        this.remove();
     }
 });
 Wizzaro.namespace('Plugins.Partners.v1.MetaboxElements.View');
@@ -603,10 +758,12 @@ Wizzaro.Plugins.Partners.v1.MetaboxElements.View.NoAddedElements = Backbone.View
     },
     
     redisplayElement: function( added_model ) {
-        var model = this.collection.findWhere( { id: added_model.get( 'id' ) } );
-        
-        if ( ! _.isUndefined( model ) ) {
-            model.show();
+        if ( added_model.has( 'id' ) ) {
+            var model = this.collection.findWhere( { id: added_model.get( 'id' ) } );
+            
+            if ( ! _.isUndefined( model ) ) {
+                model.show();
+            }
         }
     },
 });

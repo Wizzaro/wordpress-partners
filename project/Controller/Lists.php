@@ -9,7 +9,7 @@ use Wizzaro\Partners\Entity\ListPostType;
 
 use Wizzaro\Partners\Component\Metabox\ListSettings;
 use Wizzaro\Partners\Component\Metabox\ListShortcode;
-use Wizzaro\Partners\Component\Metabox\SliderElements;
+use Wizzaro\Partners\Component\Metabox\ListElements;
 
 class Lists extends AbstractPluginController {
     
@@ -23,7 +23,7 @@ class Lists extends AbstractPluginController {
     }
     
     public function init_admin() {
-        //SliderElements::create();
+        ListElements::create();
         ListShortcode::create();
         ListSettings::create();
         
@@ -115,7 +115,7 @@ class Lists extends AbstractPluginController {
     }
 
     public function action_set_metaboxs_screens( $post_types ) {
-        //SliderElements::get_instance()->set_config( array( 'screen' => $post_types ) );
+        ListElements::get_instance()->set_config( array( 'screen' => $post_types ) );
         ListShortcode::get_instance()->set_config( array( 'screen' => $post_types ) );
         ListSettings::get_instance()->set_config( array( 'screen' => $post_types ) );
     }
