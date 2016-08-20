@@ -28,7 +28,10 @@ class SliderElements extends AbstractPostMeta {
             $elements = get_posts( $args );
             
             foreach ( $elements as $element ) {
-                $return_elements[(string) array_search( $element->ID, $this->elements )] = $element;
+                $key = array_search( $element->ID, $this->elements );
+                if ( $key !== false ) {
+                    $return_elements[(string) $key] = $element;
+                }
             }
             
             ksort( $return_elements );
