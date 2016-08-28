@@ -140,22 +140,24 @@ class PostType extends AbstractPluginController {
         $post_type = PostTypesCollection::get_instance()->get_post_type( $post->post_type );
         
         if ( $post_type ) {
+            $view_data = array(
+                'languages_domain' => $this->_config->get( 'languages', 'domain' ),
+                'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
+                'partner_data' => new PartnerDataEntity( $post->ID ) 
+            );
+            
+            if ( $this->is_themes_view_exist( 'partner-data' ) ) {
+                $view = $this->get_themes_view( 'partner-data', $view_data );
+            } else {
+                $view = $this->get_view( 'partner-data', $view_data );
+            }
+            
             switch( $post_type->get_option_instance()->get_option( $post->post_type . '-partner-data', 'display_place' ) ) {
                 case 'before':
-                    $content = $this->get_view( 'partner-data', array(
-                            'languages_domain' => $this->_config->get( 'languages', 'domain' ),
-                            'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
-                            'partner_data' => new PartnerDataEntity( $post->ID ) 
-                        )
-                     ) . $content;
+                    $content = $view . $content;
                     break;
                 case 'after':
-                    $content = $content . $this->get_view( 'partner-data', array(
-                            'languages_domain' => $this->_config->get( 'languages', 'domain' ),
-                            'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
-                            'partner_data' => new PartnerDataEntity( $post->ID ) 
-                        )
-                     );
+                    $content = $content . $view;
                     break;
             }
         }
@@ -168,12 +170,18 @@ class PostType extends AbstractPluginController {
         $post_type = PostTypesCollection::get_instance()->get_post_type( $post->post_type );
         
         if ( $post_type ) {
-            return $this->get_view( 'partner-data', array(
-                    'languages_domain' => $this->_config->get( 'languages', 'domain' ),
-                    'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
-                    'partner_data' => new PartnerDataEntity( $post->ID ) 
-                )
-             );
+            
+            $view_data = array(
+                'languages_domain' => $this->_config->get( 'languages', 'domain' ),
+                'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
+                'partner_data' => new PartnerDataEntity( $post->ID ) 
+            );
+            
+            if ( $this->is_themes_view_exist( 'partner-data' ) ) {
+                return $this->get_themes_view( 'partner-data', $view_data );
+            }
+                 
+            return $this->get_view( 'partner-data', $view_data );
         }
         
         return '';
