@@ -27,6 +27,8 @@ class PostType extends AbstractPluginController {
         add_action( 'wizzaro_partners_after_register_post_types', array( $this, 'action_create_settings_pages_for_post_types' ) );
         
         add_action( 'wp_ajax_' . $this->_config->get( 'ajax_actions', 'metabox_elements_sync' ), array( $this, 'ajax_action_elements_sync' ) );
+        
+        add_action( 'save_post', array( $this, 'reset_partner_data_view_cache' ), 10, 2 );
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -82,9 +84,6 @@ class PostType extends AbstractPluginController {
             
             $post_type_instance = new PostTypeEntity( $post_type_settings );
             
-            //TODO create slider taxonomy
-            //TODO create lists taxonomy
-            
             if ( $post_type_settings['public'] === true ) {
                 $args = $default_public_settings;
                 
@@ -135,30 +134,52 @@ class PostType extends AbstractPluginController {
         }
     }
     
+    private function get_partner_data_view( $post ) {
+        $post = get_post();
+        $post_type = PostTypesCollection::get_instance()->get_post_type( $post->post_type );
+        
+        $view = false;
+        
+        if ( $post_type ) {
+            //check is data exist in cahce
+            $view = wp_cache_get( 'partner-data', $post->post_type . '-' . $post->ID );
+            
+            if ( ! $view ) {
+                $view_data = array(
+                    'languages_domain' => $this->_config->get( 'languages', 'domain' ),
+                    'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
+                    'partner_data' => new PartnerDataEntity( $post->ID ) 
+                );
+                
+                if ( $this->is_themes_view_exist( 'partner-data' ) ) {
+                    $view = $this->get_themes_view( 'partner-data', $view_data );
+                } else {
+                    $view = $this->get_view( 'partner-data', $view_data );
+                }
+                     
+                wp_cache_set( 'partner-data', $view , $post->post_type . '-' . $post->ID );
+            }
+        }
+        
+        return $view;
+    }
+    
     public function filter_add_partner_data_to_content( $content ) {
         $post = get_post();
         $post_type = PostTypesCollection::get_instance()->get_post_type( $post->post_type );
         
         if ( $post_type ) {
-            $view_data = array(
-                'languages_domain' => $this->_config->get( 'languages', 'domain' ),
-                'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
-                'partner_data' => new PartnerDataEntity( $post->ID ) 
-            );
+            $view = $this->get_partner_data_view( $post );
             
-            if ( $this->is_themes_view_exist( 'partner-data' ) ) {
-                $view = $this->get_themes_view( 'partner-data', $view_data );
-            } else {
-                $view = $this->get_view( 'partner-data', $view_data );
-            }
-            
-            switch( $post_type->get_option_instance()->get_option( $post->post_type . '-partner-data', 'display_place' ) ) {
-                case 'before':
-                    $content = $view . $content;
-                    break;
-                case 'after':
-                    $content = $content . $view;
-                    break;
+            if ( $view ) {
+                switch( $post_type->get_option_instance()->get_option( $post->post_type . '-partner-data', 'display_place' ) ) {
+                    case 'before':
+                        $content = $view . $content;
+                        break;
+                    case 'after':
+                        $content = $content . $view;
+                        break;
+                }
             }
         }
         
@@ -171,17 +192,11 @@ class PostType extends AbstractPluginController {
         
         if ( $post_type ) {
             
-            $view_data = array(
-                'languages_domain' => $this->_config->get( 'languages', 'domain' ),
-                'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
-                'partner_data' => new PartnerDataEntity( $post->ID ) 
-            );
+            $view = $this->get_partner_data_view( $post );
             
-            if ( $this->is_themes_view_exist( 'partner-data' ) ) {
-                return $this->get_themes_view( 'partner-data', $view_data );
+            if ( $view ) {
+                return $view;
             }
-                 
-            return $this->get_view( 'partner-data', $view_data );
         }
         
         return '';
@@ -189,6 +204,27 @@ class PostType extends AbstractPluginController {
     
     //----------------------------------------------------------------------------------------------------
     // Functions for admin
+    public function reset_partner_data_view_cache( $post_id, $post ) {
+        $post_type = PostTypesCollection::get_instance()->get_post_type( $post->post_type );
+        
+        if ( $post_type ) {
+            
+            $view_data = array(
+                'languages_domain' => $this->_config->get( 'languages', 'domain' ),
+                'partner_data_attributes' => $post_type->get_setting( 'partner_data_attributes' ),
+                'partner_data' => new PartnerDataEntity( $post->ID ) 
+            );
+            
+            if ( $this->is_themes_view_exist( 'partner-data' ) ) {
+                $view = $this->get_themes_view( 'partner-data', $view_data );
+            } else {
+                $view = $this->get_view( 'partner-data', $view_data );
+            }
+            
+            //save view in cache
+            wp_cache_set( 'partner-data', $view , $post->post_type . '-' . $post->ID );
+        }
+    }    
     
     public function action_set_post_data_metabox_screens( $post_types ) {
         PartnerData::get_instance()->set_config( array( 'screen' => $post_types ) );
