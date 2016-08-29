@@ -77,12 +77,6 @@ return array(
                 'content' => true,
             ),
             'partner_data_attributes' => array(
-                /*'position' => array(
-                    'use' => true,
-                    'type' => 'text',
-                    'title' => 'Position',
-                    'placeholder' => 'Add position'
-                ),*/
                 'address' => array(
                     'use' => true,
                     'type' => 'address',
@@ -109,17 +103,17 @@ return array(
                 ),
             ),
             //this is for current partner post type
-            'taxonomies' => array(
+            /*'taxonomies' => array(
                 'wizzaro-partners-categories' => array(
                     'config' => array(),
                 )
-            )
+            )*/
         ),
         //this is for all partners post types
-        'taxonomies' => array(
+        /*'taxonomies' => array(
             'wizzaro-partners-categories' => array(
                 'config' => array(),
             )
-        )
+        )*/
     )
 );
