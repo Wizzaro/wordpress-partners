@@ -11,15 +11,21 @@ use Wizzaro\Partners\Component\Metabox\ListSettings;
 use Wizzaro\Partners\Component\Metabox\ListShortcode;
 use Wizzaro\Partners\Component\Metabox\ListElements;
 
+use Wizzaro\Partners\Entity\PostMeta\ListSettings as ListSettingsEntity;
+use Wizzaro\Partners\Entity\PostMeta\ListElements as ListElementsEntity;
+
+use Wizzaro\Partners\Widget\Lists as ListWidget;
+
 class Lists extends AbstractPluginController {
     
     public function init() {
         add_action( 'wizzaro_partners_after_register_post_types', array( $this, 'action_regiset_lists_post_types' ) );
+        add_action( 'widgets_init', array( $this, 'action_register_widgets' ) );
     }
     
     public function init_front() {
-        //add_action( 'wizzaro_partners_lists_after_register_post_type', array( $this, 'action_init_shordcode' ) );
-        //add_shortcode( 'partners-list', array( $this, 'render_shordcode_partners_list' ) );
+        add_action( 'wizzaro_partners_lists_after_register_post_type', array( $this, 'action_init_shordcode' ), 10, 2 );
+        add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_style' ) );
     }
     
     public function init_admin() {
@@ -29,6 +35,8 @@ class Lists extends AbstractPluginController {
         
         add_action( 'wizzaro_partners_lists_after_register_post_type', array( $this, 'action_init_columns_actions' ) );
         add_action( 'wizzaro_partners_lists_after_register_post_types', array( $this, 'action_set_metaboxs_screens' ) );
+        
+        add_action( 'save_post', array( $this, 'reset_shordcode_view_cache' ), 10, 2 );
     }
     
     public function action_regiset_lists_post_types() {
@@ -81,12 +89,96 @@ class Lists extends AbstractPluginController {
 
                 $lists_post_types_collection->add_post_type( $lists_post_type_name, $lists_post_type ); 
                 
-                do_action( 'wizzaro_partners_lists_after_register_post_type', $lists_post_type_name );
+                do_action( 'wizzaro_partners_lists_after_register_post_type', $lists_post_type_name, $lists_post_type );
             }
         }
         
         do_action( 'wizzaro_partners_lists_after_register_post_types', $lists_post_types_keys );
     }
+
+    public function action_register_widgets() {
+        foreach ( ListsPostTypes::get_instance()->get_post_types() as $post_type ) {
+            $widget_settings = $post_type->get_setting( 'widget', flase );
+            if ( $widget_settings ) {
+                register_widget( new ListWidget( $widget_settings['id'], $widget_settings['name'], $post_type ) );
+            }
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    // Functions for front
+    
+    public function action_enqueue_style() {
+        if ( apply_filters( 'wizzaro_partners_list_enqueue_style', true ) ) {
+            wp_enqueue_style( 'wizzaro-partners-list-css', $this->_config->get_css_url() . 'list.css', array(), '1.0.0' );
+        }
+    }
+    
+    public function action_init_shordcode( $post_type, $post_type_obj ) {
+        add_shortcode( $post_type_obj->get_setting( 'shordcode' ), array( $this, 'render_shordcode') );
+    }
+
+    public function render_shordcode( $attrs ) {
+        $view = '';
+        
+        if ( isset( $attrs['id'] ) ) {
+            $post = get_post( $attrs['id'] );
+            
+            if ( $post ) {
+                $view = wp_cache_get( 'wizzaro_partners_list_shordcode', $post->post_type . '-' . $post->ID );
+            
+                if ( ! $view ) {
+                    $elements = new ListElementsEntity( $post->ID );
+                    
+                    $view_data = array(
+                        'post' => $post,
+                        'settings' => new ListSettingsEntity( $post->ID ),
+                        'elements' => $elements->getElements()
+                    );
+                    
+                    if ( $this->is_themes_view_exist( 'shordcode-list' ) ) {
+                        $view = $this->get_themes_view( 'shordcode-list', $view_data );
+                    } else {
+                        $view = $this->get_view( 'shordcode-list', $view_data );
+                    }
+                         
+                    wp_cache_set( 'wizzaro_partners_list_shordcode', $view , $post->post_type . '-' . $post->ID );
+                }
+            }
+        }
+        
+        return $view;
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    // Functions for admin
+    
+     public function reset_shordcode_view_cache( $post_id, $post ) {
+        if ( wp_is_post_revision( $post_id ) ) {
+            return;
+        }
+        
+        $post_type = ListsPostTypes::get_instance()->get_post_type( $post->post_type );
+        
+        if ( $post_type ) {
+            
+            $elements = new ListElementsEntity( $post->ID );
+                    
+            $view_data = array(
+                'post' => $post,
+                'settings' => new ListSettingsEntity( $post->ID ),
+                'elements' => $elements->getElements()
+            );
+            
+            if ( $this->is_themes_view_exist( 'shordcode-list' ) ) {
+                $view = $this->get_themes_view( 'shordcode-list', $view_data );
+            } else {
+                $view = $this->get_view( 'shordcode-list', $view_data );
+            }
+                 
+            wp_cache_set( 'wizzaro_partners_list_shordcode', $view , $post->post_type . '-' . $post->ID );
+        }
+    }    
 
     public function action_init_columns_actions( $post_type ) {
         add_filter( 'manage_' . $post_type . '_posts_columns', array( $this, 'filter_reservation_data_columns' ) );

@@ -54,7 +54,11 @@ return array(
             'use_lists' => true,
             'lists_settings' => array(
                 'post_type' => 'wizzaro-partners-l',
-                'shordcode' => 'wizzaro-partners-list'
+                'shordcode' => 'wizzaro-partners-list',
+                'widget' => array(
+                    'id' => 'wizzaro-partners-list-widget',
+                    'name' => __( 'Partners List', 'wizzaro-partners' )
+                )
             ),
             'admin_menu_icon' => 'dashicons-groups',
             'setting_page_config' => array(

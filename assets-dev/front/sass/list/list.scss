@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+//Import global
+@import '../../../sass-global/style';
+
+.wizzaro-partners-list {
+    width: 100%;
+    
+    .wpl-header {
+        text-align: center;
+    }
+    
+    .wpl-elems {
+        text-align: center;
+        font-size: 0;
+    }
+    
+    .wpl-elem {
+        display: inline-block;
+        padding: 10px;
+        font-size: medium;
+        text-align: left;
+        vertical-align: top;
+        white-space: normal;
+        
+        .wpl-e-thumbnail img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        .wpl-e-title {
+            padding: 10px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+}

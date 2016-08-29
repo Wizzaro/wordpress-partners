@@ -13,7 +13,17 @@ module.exports = function (grunt) {
                     outputStyle: 'compressed',
                     environment: 'production'
                 }
-            },               
+            },   
+            front_list: {
+                options: {            
+                    config: 'assets-dev/front/sass/list/config.rb',
+                    specify: [
+                        'assets-dev/front/sass/list/list.scss',
+                    ],
+                    outputStyle: 'compressed',
+                    environment: 'production'
+                }
+            },              
             admin_metabox_elements: {                   
                 options: {            
                     config: 'assets-dev/admin/sass/metabox-elements/config.rb',
@@ -94,6 +104,15 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['concat:front_slider']
             },
+            front_list_css: {
+                files: [
+                    'assets-dev/front/sass/list/list.scss',
+                    'assets-dev/front/sass/list/*.scss',
+                    'assets-dev/front/sass/list/*/*.scss',
+                    'assets-dev/front/sass/list/*/*/*.scss'
+                ],
+                tasks: ['compass:front_list']
+            },
             admin_css_metabox_elements: {
                 files: [
                     'assets-dev/admin/sass/metabox-elements/metabox-elements.scss',
@@ -128,4 +147,6 @@ module.exports = function (grunt) {
     
     grunt.registerTask('liveupdate_front_slider_css', ['watch:front_slider_css']);
     grunt.registerTask('liveupdate_front_slider_js', ['watch:front_slider_js']);
+    
+    grunt.registerTask('liveupdate_front_list_css', ['watch:front_list_css']);
 };
