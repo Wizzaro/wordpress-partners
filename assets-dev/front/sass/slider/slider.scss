@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+//Import global
+@import '../../../sass-global/style';
+
+.wizzaro-partners-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    
+    .wps-header {
+        text-align: center;
+    }
+    
+    .wps-elems {
+        position: relative;
+        text-align: left;
+        font-size: 0;
+    }
+    
+    .wps-elem {
+        display: inline-block;
+        padding: 10px;
+        font-size: medium;
+        text-align: left;
+        vertical-align: top;
+        white-space: normal;
+        
+        .wps-e-thumbnail img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        
+        .wps-e-title {
+            padding: 10px 0;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+}
+
+html.js .wizzaro-partners-slider .wps-elems {
+    white-space: nowrap;
+}

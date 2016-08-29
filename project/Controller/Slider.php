@@ -11,6 +11,9 @@ use Wizzaro\Partners\Component\Metabox\SliderSettings;
 use Wizzaro\Partners\Component\Metabox\SliderShortcode;
 use Wizzaro\Partners\Component\Metabox\SliderElements;
 
+use Wizzaro\Partners\Entity\PostMeta\SliderSettings as SliderSettingsEntity;
+use Wizzaro\Partners\Entity\PostMeta\SliderElements as SliderElementsEntity;
+
 class Slider extends AbstractPluginController {
     
     public function init() {
@@ -18,8 +21,8 @@ class Slider extends AbstractPluginController {
     }
     
     public function init_front() {
-        //add_action( 'wizzaro_partners_sliders_after_register_post_type', array( $this, 'action_init_shordcode' ) );
-        //add_shortcode( 'partners-slider', array( $this, 'render_shordcode_partners_slider' ) );
+        add_action( 'wizzaro_partners_sliders_after_register_post_type', array( $this, 'action_init_shordcode' ), 10, 2 );
+        add_action( 'wp_enqueue_scripts', array( $this, 'action_enqueue_style' ) );
     }
     
     public function init_admin() {
@@ -29,6 +32,8 @@ class Slider extends AbstractPluginController {
         
         add_action( 'wizzaro_partners_sliders_after_register_post_type', array( $this, 'action_init_columns_actions' ) );
         add_action( 'wizzaro_partners_sliders_after_register_post_types', array( $this, 'action_set_metaboxs_screens' ) );
+        
+        add_action( 'save_post', array( $this, 'reset_shordcode_view_cache' ), 10, 2 );
     }
     
     public function action_regiset_sliders_post_types() {
@@ -82,12 +87,91 @@ class Slider extends AbstractPluginController {
 
                 $slider_post_types_collection->add_post_type( $slider_post_type_name, $sliders_post_type ); 
                 
-                do_action( 'wizzaro_partners_sliders_after_register_post_type', $slider_post_type_name );
+                do_action( 'wizzaro_partners_sliders_after_register_post_type', $slider_post_type_name, $sliders_post_type );
             }
         }
         
         do_action( 'wizzaro_partners_sliders_after_register_post_types', $sliders_post_types_keys );
     }
+
+    //----------------------------------------------------------------------------------------------------
+    // Functions for front
+    
+    public function action_enqueue_style() {
+        if ( apply_filters( 'wizzaro_partners_slider_enqueue_style', true ) ) {
+            wp_enqueue_style( 'wizzaro-partners-slider-css', $this->_config->get_css_url() . 'slider.css', array(), '1.0.0' );
+        }
+    }
+    
+    public function action_init_shordcode( $post_type, $post_type_obj ) {
+        add_shortcode( $post_type_obj->get_setting( 'shordcode' ), array( $this, 'render_shordcode') );
+    }
+
+    public function render_shordcode( $attrs ) {
+        $view = '';
+        
+        if ( isset( $attrs['id'] ) ) {
+            $post = get_post( $attrs['id'] );
+            
+            if ( $post ) {
+                if ( apply_filters( 'wizzaro_partners_slider_enqueue_script', true ) ) {
+                    wp_enqueue_script( 'wizzaro-partners-slider-js', $this->_config->get_js_url() . 'slider.js', array( 'jquery' ), '1.0.0' , true );
+                }
+                
+                $view = wp_cache_get( 'wizzaro_partners_slider_shordcode', $post->post_type . '-' . $post->ID );
+            
+                if ( ! $view ) {
+                    $elements = new SliderElementsEntity( $post->ID );
+                    
+                    $view_data = array(
+                        'post' => $post,
+                        'settings' => new SliderSettingsEntity( $post->ID ),
+                        'elements' => $elements->getElements()
+                    );
+                    
+                    if ( $this->is_themes_view_exist( 'shordcode-slider' ) ) {
+                        $view = $this->get_themes_view( 'shordcode-slider', $view_data );
+                    } else {
+                        $view = $this->get_view( 'shordcode-slider', $view_data );
+                    }
+                         
+                    wp_cache_set( 'wizzaro_partners_slider_shordcode', $view , $post->post_type . '-' . $post->ID );
+                }
+            }
+        }
+        
+        return $view;
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    // Functions for admin
+    
+     public function reset_shordcode_view_cache( $post_id, $post ) {
+        if ( wp_is_post_revision( $post_id ) ) {
+            return;
+        }
+        
+        $post_type = SlidersPostTypes::get_instance()->get_post_type( $post->post_type );
+        
+        if ( $post_type ) {
+            
+            $elements = new SliderElementsEntity( $post->ID );
+                    
+            $view_data = array(
+                'post' => $post,
+                'settings' => new SliderSettingsEntity( $post->ID ),
+                'elements' => $elements->getElements()
+            );
+            
+            if ( $this->is_themes_view_exist( 'shordcode-slider' ) ) {
+                $view = $this->get_themes_view( 'shordcode-slider', $view_data );
+            } else {
+                $view = $this->get_view( 'shordcode-slider', $view_data );
+            }
+                 
+            wp_cache_set( 'wizzaro_partners_slider_shordcode', $view , $post->post_type . '-' . $post->ID );
+        }
+    }    
 
     public function action_init_columns_actions( $post_type ) {
         add_filter( 'manage_' . $post_type . '_posts_columns', array( $this, 'filter_reservation_data_columns' ) );

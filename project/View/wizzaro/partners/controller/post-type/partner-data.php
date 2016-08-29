@@ -9,7 +9,7 @@
                 switch ( $attribute_settings['type'] ) {
                     case 'phone':
                         ?>
-                        <a href="tel:<?php echo esc_attr( $view_data['partner_data']->$attribute_key ); ?>"><?php echo esc_attr( $view_data['partner_data']->$attribute_key ); ?></a>
+                        <a href="tel:<?php echo preg_replace( '/\s+/', '', esc_attr( $view_data['partner_data']->$attribute_key ) ); ?>"><?php echo esc_attr( $view_data['partner_data']->$attribute_key ); ?></a>
                         <?php
                         break;
                     case 'email':

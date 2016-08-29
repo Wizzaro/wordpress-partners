@@ -100,9 +100,9 @@ class SliderSettings extends AbstractMetabox {
             
             if ( array_key_exists( 'pause_on_hover', $new_settings ) ) {
                 if ( ! strcasecmp( $new_settings['pause_on_hover'], '1' ) ) {
-                    $settings->pause_on_hover = true;
+                    $settings->pause_on_hover = 1;
                 } else {
-                    $settings->pause_on_hover = false;
+                    $settings->pause_on_hover = 0;
                 }
             }
         }

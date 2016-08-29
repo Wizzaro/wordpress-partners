@@ -46,7 +46,7 @@ wp_nonce_field('wizzaro_partners_elements_edit_nounce', 'wizzaro_partners_elemen
                                 }
                                 ?>
                                 <div class="wpme-l-e-name">
-                                    <?php echo $element->post_title; ?>
+                                    <?php echo esc_attr ( $element->post_title ); ?>
                                 </div>
                                 <div class="wpme-l-e-del">
                                     <a href="#">

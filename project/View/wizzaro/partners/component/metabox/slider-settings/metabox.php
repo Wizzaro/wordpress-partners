@@ -57,11 +57,11 @@ wp_nonce_field('wizzaro_partners_slider_settings_edit_nounce', 'wizzaro_partners
                 <strong><?php _e( 'Pause on hover slider', $view_data['languages_domain'] ); ?>:</strong>
             </li>
             <li>
-                <input type="radio" name="wizzaro_partners_slider_settings[pause_on_hover]" value="1" <?php checked( $view_data['slider_settings']->pause_on_hover, true ); ?>>
+                <input type="radio" name="wizzaro_partners_slider_settings[pause_on_hover]" value="1" <?php checked( $view_data['slider_settings']->pause_on_hover, 1 ); ?>>
                 <?php _e( 'Yes' ); ?>
             </li>
             <li>
-                <input type="radio" name="wizzaro_partners_slider_settings[pause_on_hover]" value="0" <?php checked( $view_data['slider_settings']->pause_on_hover, false ); ?>>
+                <input type="radio" name="wizzaro_partners_slider_settings[pause_on_hover]" value="0" <?php checked( $view_data['slider_settings']->pause_on_hover, 0 ); ?>>
                 <?php _e( 'No' ); ?>
             </li>
         </ul>

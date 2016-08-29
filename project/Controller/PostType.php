@@ -142,7 +142,7 @@ class PostType extends AbstractPluginController {
         
         if ( $post_type ) {
             //check is data exist in cahce
-            $view = wp_cache_get( 'partner-data', $post->post_type . '-' . $post->ID );
+            $view = wp_cache_get( 'wizzaro_partners_partner_data', $post->post_type . '-' . $post->ID );
             
             if ( ! $view ) {
                 $view_data = array(
@@ -157,7 +157,7 @@ class PostType extends AbstractPluginController {
                     $view = $this->get_view( 'partner-data', $view_data );
                 }
                      
-                wp_cache_set( 'partner-data', $view , $post->post_type . '-' . $post->ID );
+                wp_cache_set( 'wizzaro_partners_partner_data', $view , $post->post_type . '-' . $post->ID );
             }
         }
         
@@ -204,7 +204,12 @@ class PostType extends AbstractPluginController {
     
     //----------------------------------------------------------------------------------------------------
     // Functions for admin
+    
     public function reset_partner_data_view_cache( $post_id, $post ) {
+        if ( wp_is_post_revision( $post_id ) ) {
+            return;
+        }
+        
         $post_type = PostTypesCollection::get_instance()->get_post_type( $post->post_type );
         
         if ( $post_type ) {
@@ -222,7 +227,7 @@ class PostType extends AbstractPluginController {
             }
             
             //save view in cache
-            wp_cache_set( 'partner-data', $view , $post->post_type . '-' . $post->ID );
+            wp_cache_set( 'wizzaro_partners_partner_data', $view , $post->post_type . '-' . $post->ID );
         }
     }    
     
@@ -276,7 +281,7 @@ class PostType extends AbstractPluginController {
             foreach( $elements as $element ) {
                 array_push( $response['elements'], array(
                     'id' => (string) $element->ID,
-                    'name' => $element->post_title,
+                    'name' => esc_attr( $element->post_title ),
                     'image_src' => wp_get_attachment_url( get_post_thumbnail_id( $element->ID ) )
                 ));
             }
