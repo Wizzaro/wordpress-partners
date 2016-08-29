@@ -6,8 +6,8 @@ wp_nonce_field('wizzaro_partners_elements_edit_nounce', 'wizzaro_partners_elemen
         <div id="wizzaro-partners-metabox-added-elements" class="wizzaro-partners-metabox-elements">
             <div class="spinner wizzaro-spiner"></div>
             <div>
-                <button type="button" class="wpme-add-bt button button-primary button-large"><?php _e( 'Add elements', $view_data['language_domain'] ); ?></button>
-                <button type="button" class="wpme-remove-selected-bt button button-delete button-large" disabled="disabled"><?php _e( 'Remove selected elements', $view_data['language_domain'] ); ?></button>
+                <button type="button" class="wpme-add-bt button button-primary button-large"><?php _e( 'Add elements', $view_data['languages_domain'] ); ?></button>
+                <button type="button" class="wpme-remove-selected-bt button button-delete button-large" disabled="disabled"><?php _e( 'Remove selected elements', $view_data['languages_domain'] ); ?></button>
             </div>
             <div class="wpme-menu">
                 <a href="#" class="wpme-select-all">
@@ -71,8 +71,8 @@ wp_nonce_field('wizzaro_partners_elements_edit_nounce', 'wizzaro_partners_elemen
                 </a>
             </div>
             <div>
-                <button type="button" class="wpme-add-bt button button-primary button-large"><?php _e( 'Add elements', $view_data['language_domain'] ); ?></button>
-                <button type="button" class="wpme-remove-selected-bt button button-delete button-large" disabled="disabled"><?php _e( 'Remove selected elements', $view_data['language_domain'] ); ?></button>
+                <button type="button" class="wpme-add-bt button button-primary button-large"><?php _e( 'Add elements', $view_data['languages_domain'] ); ?></button>
+                <button type="button" class="wpme-remove-selected-bt button button-delete button-large" disabled="disabled"><?php _e( 'Remove selected elements', $view_data['languages_domain'] ); ?></button>
             </div>
         </div>
     </div>

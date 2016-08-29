@@ -53,8 +53,8 @@ class ListElements extends AbstractMetabox {
                 'elements_post_type' => ListsPostTypes::get_instance()->get_post_type( $post->post_type )->get_setting( 'elements_post_type' )
             ),
             'l10n' => array(
-                'delete_elements' => __( 'Are you sure that you won\'t delete this elements?', $languages_domain ),
-                'delete_element' => __( 'Are you sure that you won\'t delete this element?', $languages_domain )
+                'delete_elements' => __( 'Are you sure you want to delete these elements?', $languages_domain ),
+                'delete_element' => __( 'Are you sure you want to delete this element?', $languages_domain )
             )
         );
         

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wizzaro Partners\n"
-"POT-Creation-Date: 2016-07-27 20:01+0200\n"
-"PO-Revision-Date: 2016-07-27 20:04+0200\n"
+"POT-Creation-Date: 2016-08-29 18:08+0200\n"
+"PO-Revision-Date: 2016-08-29 18:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl_PL\n"
@@ -21,117 +21,368 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: project/Component/Metabox/PartnerData.php:26
-msgid "Partner Data"
-msgstr "Dane partnera"
+#: project/Component/Metabox/ListElements.php:35
+#: project/Component/Metabox/SliderElements.php:35
+msgid "Elements"
+msgstr "Elementy"
+
+#: project/Component/Metabox/ListElements.php:56
+#: project/Component/Metabox/SliderElements.php:57
+msgid "Are you sure you want to delete these elements?"
+msgstr "Czy na pewno chcesz usunąć te elementy?"
+
+#: project/Component/Metabox/ListElements.php:57
+#: project/Component/Metabox/SliderElements.php:58
+msgid "Are you sure you want to delete this element?"
+msgstr "Czy na pewno chcesz usunąć ten element?"
+
+#: project/Component/Metabox/ListSettings.php:25
+#: project/Component/Metabox/SliderSettings.php:27
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: project/Component/Metabox/ListShortcode.php:23
+#: project/Component/Metabox/SliderShortcode.php:23
+#: project/Controller/Lists.php:193 project/Controller/Slider.php:198
+msgid "Shortcode"
+msgstr ""
+
+#: project/Component/Metabox/PartnerData.php:32
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:38
+msgid "Data"
+msgstr "Dane"
+
+#: project/Controller/Lists.php:48 project/Controller/Lists.php:50
+msgid "Lists "
+msgstr "Listy"
+
+#: project/Controller/Lists.php:49
+msgid "List "
+msgstr "Lista"
+
+#: project/Controller/Lists.php:51
+msgid "Add List"
+msgstr "Nowa lista"
+
+#: project/Controller/Lists.php:52
+msgid "Add New List"
+msgstr "Dodaj nową listę"
+
+#: project/Controller/Lists.php:53 project/Controller/Lists.php:54
+msgid "Edit List"
+msgstr "Edytuj listę"
+
+#: project/Controller/Lists.php:55
+msgid "New List"
+msgstr "Nowa lista"
+
+#: project/Controller/Lists.php:56
+msgid "No Lists found"
+msgstr "Nie istnieje żadna zdefiniowana Lista"
+
+#: project/Controller/Lists.php:57
+msgid "No Lists found in trash"
+msgstr "Nie znaleziono żadnej Listy w koszu"
+
+#: project/Controller/PostType.php:259
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:117
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:97
+msgid "Error during download elements"
+msgstr "Błąd podczas pobierania elementów"
+
+#: project/Controller/PostType.php:265
+msgid "Unknown post type"
+msgstr "Nieznany typ postu."
+
+#: project/Controller/Slider.php:48 project/Controller/Slider.php:50
+msgid "Sliders "
+msgstr ""
+
+#: project/Controller/Slider.php:49
+msgid "Slider "
+msgstr ""
+
+#: project/Controller/Slider.php:51
+msgid "Add Slider"
+msgstr "Dodaj slider"
+
+#: project/Controller/Slider.php:52
+msgid "Add New Slider"
+msgstr "Dodaj nowy slider"
+
+#: project/Controller/Slider.php:53 project/Controller/Slider.php:54
+msgid "Edit Slider"
+msgstr "Edytuj slider"
+
+#: project/Controller/Slider.php:55
+msgid "New Slider"
+msgstr "Nowy slider"
+
+#: project/Controller/Slider.php:56
+msgid "No Sliders found"
+msgstr "Nie istnieje żaden zdefiniowany Slider"
+
+#: project/Controller/Slider.php:57
+msgid "No Sliders found in trash"
+msgstr "Nie znaleziono żadnego Slidera w koszu"
+
+#: project/Setting/OptionFormTab/PartnerData.php:33
+msgid "Display"
+msgstr "Wyświetl"
+
+#: project/Setting/OptionFormTab/PartnerData.php:37
+msgid "Place for display data"
+msgstr "Miejsce wyświetlania danych"
+
+#: project/Setting/OptionFormTab/PartnerData.php:41
+msgid "Before content"
+msgstr "Przed treścią"
+
+#: project/Setting/OptionFormTab/PartnerData.php:42
+msgid "After content"
+msgstr "Po treści"
+
+#: project/Setting/OptionFormTab/PartnerData.php:43
+msgid "Use only shordcode"
+msgstr "Użyj tylko shordcode"
+
+#: project/Setting/OptionFormTab/PartnerData.php:45
+msgid "A place in which to display data"
+msgstr "To miejsce, w którym będą wyświetlane dane"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:8
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:31
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:8
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:31
+msgid "Add"
+msgstr "Dodaj"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:14
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:14
+msgid "Refresh"
+msgstr "Odśwież"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:18
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:15
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:89
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:18
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:14
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:66
+msgid "Select all"
+msgstr "Zaznacz wszystkie"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:22
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:19
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:93
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:22
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:18
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:70
+msgid "Unselect all"
+msgstr "Odznacz wszystkie"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:109
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:27
+#: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:89
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:26
+msgid "No elements to display"
+msgstr "Nie ma elementów do wyświetlania"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:9
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:97
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:9
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:74
+msgid "Add elements"
+msgstr "Dodaj elementy"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:10
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:98
+msgid "Add break line"
+msgstr "Dodaj przerwę"
+
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:11
+#: project/View/wizzaro/partners/component/metabox/list-elements/metabox.php:99
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:10
+#: project/View/wizzaro/partners/component/metabox/slider-elements/metabox.php:75
+msgid "Remove selected elements"
+msgstr "Usuń wybrane elementy"
+
+#: project/View/wizzaro/partners/component/metabox/list-settings/metabox.php:11
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:11
+msgid "Header"
+msgstr "Nagłówek"
+
+#: project/View/wizzaro/partners/component/metabox/list-settings/metabox.php:14
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:14
+msgid "Add header"
+msgstr "Dodaj nagłówek"
+
+#: project/View/wizzaro/partners/component/metabox/list-settings/metabox.php:23
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:23
+msgid "Amount in line"
+msgstr "Ilość w jednej lini"
 
 #: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:13
-msgid "Street"
-msgstr "Ulica"
+msgid "Info"
+msgstr "Informacje"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:16
-msgid "Add Street"
-msgstr "Dodaj ulicę"
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:18
+msgid "Data will be automatically added before displaying the content"
+msgstr "Dane będą automatycznie dodawane przed wyświetleniem treści"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:22
-msgid "Zip code"
-msgstr "Kod pocztowy"
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:21
+msgid "Data will be automatically added after displaying the content"
+msgstr "Dane zostaną automatycznie dodane po wyświetlaniu treści"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:25
-msgid "Add zip code"
-msgstr "Dodaj kod pocztowy"
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:27
+#, php-format
+msgid "For display data you can add shordcode: %s in the content"
+msgstr "W celu wyświetlenia danych możesz dodać shordcode: %s w treści"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:31
-msgid "City"
-msgstr "Miasto"
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:35
+msgid "Transition speed (ms)"
+msgstr "Prędkość przejścia (ms)"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:34
-msgid "Add City"
-msgstr "Dodaj miasto"
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:46
+msgid "Pause betwen transition (ms)"
+msgstr "Przerwa między przejściami (ms)"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:44
-msgid "Phone"
-msgstr "Telefon"
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:57
+msgid "Pause on hover slider"
+msgstr "Pauza po najechaniu kursorem"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:47
-msgid "Add Phone"
-msgstr "Dodaj telefon"
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:61
+msgid "Yes"
+msgstr "Tak"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:57
-msgid "E-mail"
-msgstr "E-mail"
+#: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:65
+msgid "No"
+msgstr "Nie"
 
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:60
-msgid "Add e-mail"
-msgstr "Dodaj adres e-mail"
-
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:70
-msgid "Website URL"
-msgstr "Link do strony internetowej."
-
-#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:73
-msgid "Add website URL"
-msgstr "Dodaj adres strony internetowej"
-
-#: project/configuration/plugin.config.local.sample.php:21
+#: project/configuration/plugin.config.local.sample.php:22
 #: project/configuration/plugin.config.local.sample.php:24
-#: project/configuration/plugin.config.php:23
-#: project/configuration/plugin.config.php:26
+#: project/configuration/plugin.config.php:29
+#: project/configuration/plugin.config.php:31
 msgid "Partners"
 msgstr "Partnerzy"
 
-#: project/configuration/plugin.config.local.sample.php:22
-#: project/configuration/plugin.config.php:24
+#: project/configuration/plugin.config.local.sample.php:23
+#: project/configuration/plugin.config.php:30
 msgid "Partner"
 msgstr "Partner"
 
 #: project/configuration/plugin.config.local.sample.php:25
-#: project/configuration/plugin.config.php:27
+#: project/configuration/plugin.config.php:32
 msgid "Add Partner"
 msgstr "Dodaj Partnera"
 
 #: project/configuration/plugin.config.local.sample.php:26
-#: project/configuration/plugin.config.php:28
+#: project/configuration/plugin.config.php:33
 msgid "Add New Partner"
 msgstr "Dodaj nowego Partnera"
 
 #: project/configuration/plugin.config.local.sample.php:27
 #: project/configuration/plugin.config.local.sample.php:28
-#: project/configuration/plugin.config.php:29
-#: project/configuration/plugin.config.php:30
+#: project/configuration/plugin.config.php:34
+#: project/configuration/plugin.config.php:35
 msgid "Edit Partner"
 msgstr "Edytuj Partnera"
 
 #: project/configuration/plugin.config.local.sample.php:29
-#: project/configuration/plugin.config.php:31
+#: project/configuration/plugin.config.php:36
 msgid "New Partner"
 msgstr "Nowy Partner"
 
 #: project/configuration/plugin.config.local.sample.php:30
-#: project/configuration/plugin.config.php:32
+#: project/configuration/plugin.config.php:37
 msgid "No Partners found"
 msgstr "Nie istnieje żaden zdefiniowany Partner"
 
 #: project/configuration/plugin.config.local.sample.php:31
-#: project/configuration/plugin.config.php:33
+#: project/configuration/plugin.config.php:38
 msgid "No Partners found in trash"
 msgstr "Nie znaleziono żadnego Partnera w koszu"
 
-#: project/configuration/plugin.config.php:34
+#: project/configuration/plugin.config.local.sample.php:32
+#: project/configuration/plugin.config.php:39
 msgid "Logo"
 msgstr "Logo"
 
-#: project/configuration/plugin.config.php:35
+#: project/configuration/plugin.config.local.sample.php:33
+#: project/configuration/plugin.config.php:40
 msgid "Set logo"
 msgstr "Ustaw jako logo"
 
-#: project/configuration/plugin.config.php:36
+#: project/configuration/plugin.config.local.sample.php:34
+#: project/configuration/plugin.config.php:41
 msgid "Remove logo"
 msgstr "Usuń logo"
 
-#: project/configuration/plugin.config.php:37
+#: project/configuration/plugin.config.local.sample.php:35
+#: project/configuration/plugin.config.php:42
 msgid "Use as logo"
 msgstr "Użyj jako logo"
+
+#: project/configuration/plugin.config.local.sample.php:44
+#: project/configuration/plugin.config.php:51
+msgid "Partners Slider"
+msgstr "Slider Partnerów"
+
+#: project/configuration/plugin.config.local.sample.php:53
+#: project/configuration/plugin.config.php:60
+msgid "Partners List"
+msgstr "Lista Partnerów"
+
+#: project/configuration/plugin.config.local.sample.php:58
+#: project/configuration/plugin.config.local.sample.php:59
+#: project/configuration/plugin.config.php:65
+#: project/configuration/plugin.config.php:66
+msgid "Partners Settings"
+msgstr "Ustawienia partnerów"
+
+#: project/configuration/plugin.config.local.sample.php:64
+#: project/configuration/plugin.config.php:71
+msgid "Partner Data"
+msgstr "Dane partnera"
+
+#: project/configuration/plugin.config.local.sample.php:76
+#: project/configuration/plugin.config.php:83
+msgid "Address"
+msgstr "Adres"
+
+#: project/configuration/plugin.config.local.sample.php:77
+#: project/configuration/plugin.config.php:84
+msgid "Add address"
+msgstr "Dodaj adres"
+
+#: project/configuration/plugin.config.local.sample.php:82
+#: project/configuration/plugin.config.php:89
+msgid "Phone"
+msgstr "Telefon"
+
+#: project/configuration/plugin.config.local.sample.php:83
+#: project/configuration/plugin.config.php:90
+msgid "Add phone"
+msgstr "Dodaj telefon"
+
+#: project/configuration/plugin.config.local.sample.php:88
+#: project/configuration/plugin.config.php:95
+msgid "E-mail"
+msgstr "E-mail"
+
+#: project/configuration/plugin.config.local.sample.php:89
+#: project/configuration/plugin.config.php:96
+msgid "Add e-mail"
+msgstr "Dodaj adres e-mail"
+
+#: project/configuration/plugin.config.local.sample.php:94
+#: project/configuration/plugin.config.php:101
+msgid "Website URL"
+msgstr "Link do strony internetowej"
+
+#: project/configuration/plugin.config.local.sample.php:95
+#: project/configuration/plugin.config.php:102
+msgid "Add website URL"
+msgstr "Dodaj adres strony internetowej"
 
 #: vendor/wizzaro/wordpress-framework-v1/src/Views/settings-page/fields/admin-field-wp-page.php:2
 msgid "----"
@@ -159,6 +410,30 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://www.wizzaro.com"
 msgstr ""
+
+#~ msgid "Are you sure that you won't delete this elements?"
+#~ msgstr "Jesteś pewny, że nie usuniesz tego elementy?"
+
+#~ msgid "Street"
+#~ msgstr "Ulica"
+
+#~ msgid "Add Street"
+#~ msgstr "Dodaj ulicę"
+
+#~ msgid "Zip code"
+#~ msgstr "Kod pocztowy"
+
+#~ msgid "Add zip code"
+#~ msgstr "Dodaj kod pocztowy"
+
+#~ msgid "City"
+#~ msgstr "Miasto"
+
+#~ msgid "Add City"
+#~ msgstr "Dodaj miasto"
+
+#~ msgid "Add Phone"
+#~ msgstr "Dodaj telefon"
 
 #~ msgid "Site URL"
 #~ msgstr "Adres strony internetowej"
