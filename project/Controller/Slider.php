@@ -14,10 +14,13 @@ use Wizzaro\Partners\Component\Metabox\SliderElements;
 use Wizzaro\Partners\Entity\PostMeta\SliderSettings as SliderSettingsEntity;
 use Wizzaro\Partners\Entity\PostMeta\SliderElements as SliderElementsEntity;
 
+use Wizzaro\Partners\Widget\Slider as SliderWidget;
+
 class Slider extends AbstractPluginController {
     
     public function init() {
         add_action( 'wizzaro_partners_after_register_post_types', array( $this, 'action_regiset_sliders_post_types' ) );
+        add_action( 'widgets_init', array( $this, 'action_register_widgets' ) );
     }
     
     public function init_front() {
@@ -92,6 +95,15 @@ class Slider extends AbstractPluginController {
         }
         
         do_action( 'wizzaro_partners_sliders_after_register_post_types', $sliders_post_types_keys );
+    }
+
+    public function action_register_widgets() {
+        foreach ( SlidersPostTypes::get_instance()->get_post_types() as $post_type ) {
+            $widget_settings = $post_type->get_setting( 'widget', flase );
+            if ( $widget_settings ) {
+                register_widget( new SliderWidget( $widget_settings['id'], $widget_settings['name'], $post_type ) );
+            }
+        }
     }
 
     //----------------------------------------------------------------------------------------------------

@@ -26,9 +26,9 @@ return array(
             'post_type' => 'wizzaro-partners',
             'slug' => 'partners',
             'labels'=> array(
-                'name'                  => __('Partners', 'wizzaro-partners'),
-                'singular_name'         => __('Partner', 'wizzaro-partners'),
-                'menu_name'             => __('Partners', 'wizzaro-partners'),
+                'name'                  => __( 'Partners', 'wizzaro-partners' ),
+                'singular_name'         => __( 'Partner', 'wizzaro-partners' ),
+                'menu_name'             => __( 'Partners', 'wizzaro-partners' ),
                 'add_new'               => __( 'Add Partner', 'wizzaro-partners' ),
                 'add_new_item'          => __( 'Add New Partner', 'wizzaro-partners' ),
                 'edit'                  => __( 'Edit Partner', 'wizzaro-partners' ),
@@ -45,7 +45,11 @@ return array(
             'use_sliders' => true,
             'sliders_settings' => array(
                 'post_type' => 'wizzaro-partners-s',
-                'shordcode' => 'wizzaro-partners-slider'
+                'shordcode' => 'wizzaro-partners-slider',
+                'widget' => array(
+                    'id' => 'wizzaro-partners-slider-widget',
+                    'name' => __( 'Partners Slider', 'wizzaro-partners' )
+                )
             ),
             'use_lists' => true,
             'lists_settings' => array(

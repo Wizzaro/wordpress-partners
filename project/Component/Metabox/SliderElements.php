@@ -114,7 +114,7 @@ class SliderElements extends AbstractMetabox {
             foreach( $_POST[$this->_input_name] as $elem_id ) {
                 $elem = get_post( $elem_id );
                 
-                if ( ! strcasecmp( $elem->post_type, $elements_post_type ) && ! in_array( $elem->ID, $new_elements->elements ) ) {
+                if ( $elem && ! strcasecmp( $elem->post_type, $elements_post_type ) && ! in_array( $elem->ID, $new_elements->elements ) ) {
                     array_push( $new_elements->elements, $elem->ID );
                 }
             }

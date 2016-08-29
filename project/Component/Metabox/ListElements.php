@@ -119,7 +119,7 @@ class ListElements extends AbstractMetabox {
                 } else {
                     $elem = get_post( $value );
                     
-                    if ( ! strcasecmp( $elem->post_type, $elements_post_type ) && ! in_array( $elem->ID, $new_elements->elements ) ) {
+                    if ( $elem && ! strcasecmp( $elem->post_type, $elements_post_type ) && ! in_array( $elem->ID, $new_elements->elements ) ) {
                         array_push( $new_elements->elements, $elem->ID );
                     }
                 }
