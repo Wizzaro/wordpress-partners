@@ -116,11 +116,40 @@ class PostType extends AbstractPluginController {
             PostTypesCollection::get_instance()->add_post_type( $post_type, $post_type_instance );
             
             register_post_type( $post_type, $args );
+            
+            if ( array_key_exists( 'taxonomies', $post_type_settings ) ) {
+                foreach ( $post_type_settings['taxonomies'] as $tax_name => $tax_settings ) {
+                    $this->register_taxonomy( $tax_name, $post_type, $tax_settings, $post_type_settings['public'] );
+                }
+            }
         }
 
         do_action( 'wizzaro_partners_after_register_post_types', array_keys( $post_types_settings ) );
         
         flush_rewrite_rules();
+    }
+
+    private function register_taxonomy( $taxonomy, $object_type, array $args, $public = true ) {
+        
+        $taxonomy_args = array(
+            'labels'              => $args['labels'],
+            'public'              => $public,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'show_in_nav_menus'   => true,
+            'show_in_quick_edit'  => true,
+            'show_admin_column'   => true,
+        );
+        
+        if ( array_key_exists( 'slug', $args) ) {
+            $taxonomy_args['rewrite'] = array( 'slug' => $args['slug'] );
+        }
+        
+        if ( array_key_exists( 'hierarchical', $args) ) {
+            $taxonomy_args['hierarchical'] = $args['hierarchical'];
+        }
+        
+        register_taxonomy( $taxonomy, $object_type, $taxonomy_args );
     }
     
     //----------------------------------------------------------------------------------------------------

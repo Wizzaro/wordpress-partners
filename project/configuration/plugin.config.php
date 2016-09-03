@@ -103,11 +103,26 @@ return array(
                 ),
             ),
             //this is for current partner post type
-            /*'taxonomies' => array(
-                'wizzaro-partners-categories' => array(
-                    'config' => array(),
+            'taxonomies' => array(
+                'wizzaro-partners-category' => array(
+                    'slug' => 'partners-category',
+                    'hierarchical' => true,
+                    'labels' => array(
+                        'name'                  => __( 'Partner Categories ', 'wizzaro-partners' ),
+                        'singular_name'         => __( 'Partner Category ', 'wizzaro-partners' ),
+                        'all_items'             => __( 'All Categories' ), 
+                        'edit_item'             => __( 'Edit Category' ),
+                        'view_item'             => __( 'View Category' ),
+                        'update_item'           => __( 'Update Category' ),
+                        'add_new_item'          => __( 'Add New Category' ),
+                        'new_item_name'         => __( 'New Category Name' ),
+                        'parent_item'           => __( 'Parent Category' ),
+                        'parent_item_colon'     => __( 'Parent Category:' ),
+                        'search_items'          => __( 'Search Categories' ),
+                        'not_found'             => __( 'No categories found.' )
+                    )
                 )
-            )*/
+            )
         ),
         //this is for all partners post types
         /*'taxonomies' => array(
