@@ -48,7 +48,7 @@ if ( apply_filters( 'wizzaro_partners_slider_use_amount', true, $view_data['post
                     
                     if ( $element_post_type ) {
                         foreach ( $element_post_type->get_setting( 'partner_data_attributes' ) as $attribute_key => $attribute_settings ) {
-                            if ( $attribute_settings['use'] === true && $element_data->$attribute_key ) {
+                            if ( $attribute_settings['use'] === true && mb_strlen( $element_data->$attribute_key ) > 0 ) {
                                 ?>
                                 <div class="wps-e-<?php echo $attribute_key ?>">
                                     <strong><?php echo $attribute_settings['title'] ?>:</strong>
