@@ -185,7 +185,7 @@ class PostType extends AbstractPluginController {
                 );
                 
                 if ( $this->is_themes_view_exist( 'partner-data-' . $post->post_type ) ) {
-                    $view = $this->get_themes_view( 'partner-data-' . $post->post_type );
+                    $view = $this->get_themes_view( 'partner-data-' . $post->post_type, $view_data );
                 } elseif ( $this->is_themes_view_exist( 'partner-data' ) ) {
                     $view = $this->get_themes_view( 'partner-data', $view_data );
                 } else {
