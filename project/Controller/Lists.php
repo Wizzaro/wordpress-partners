@@ -136,7 +136,9 @@ class Lists extends AbstractPluginController {
                         'elements' => $elements->getElements()
                     );
                     
-                    if ( $this->is_themes_view_exist( 'shordcode-list' ) ) {
+                    if ( $this->is_themes_view_exist( 'shordcode-list-' . $post->post_type ) ) {
+                        $view = $this->get_themes_view( 'shordcode-list-' . $post->post_type );
+                    } elseif ( $this->is_themes_view_exist( 'shordcode-list' ) ) {
                         $view = $this->get_themes_view( 'shordcode-list', $view_data );
                     } else {
                         $view = $this->get_view( 'shordcode-list', $view_data );
