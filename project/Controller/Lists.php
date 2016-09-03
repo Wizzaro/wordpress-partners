@@ -29,10 +29,6 @@ class Lists extends AbstractPluginController {
     }
     
     public function init_admin() {
-        ListElements::create();
-        ListShortcode::create();
-        ListSettings::create();
-        
         add_action( 'wizzaro_partners_lists_after_register_post_type', array( $this, 'action_init_columns_actions' ) );
         add_action( 'wizzaro_partners_lists_after_register_post_types', array( $this, 'action_set_metaboxs_screens' ) );
         
@@ -98,7 +94,7 @@ class Lists extends AbstractPluginController {
 
     public function action_register_widgets() {
         foreach ( ListsPostTypes::get_instance()->get_post_types() as $post_type ) {
-            $widget_settings = $post_type->get_setting( 'widget', flase );
+            $widget_settings = $post_type->get_setting( 'widget', false );
             if ( $widget_settings ) {
                 register_widget( new ListWidget( $widget_settings['id'], $widget_settings['name'], $post_type ) );
             }
@@ -209,8 +205,10 @@ class Lists extends AbstractPluginController {
     }
 
     public function action_set_metaboxs_screens( $post_types ) {
-        ListElements::get_instance()->set_config( array( 'screen' => $post_types ) );
-        ListShortcode::get_instance()->set_config( array( 'screen' => $post_types ) );
-        ListSettings::get_instance()->set_config( array( 'screen' => $post_types ) );
+        if ( count ( $post_types ) > 0 ) {
+            ListElements::create()->set_config( array( 'screen' => $post_types ) );
+            ListShortcode::create()->set_config( array( 'screen' => $post_types ) );
+            ListSettings::create()->set_config( array( 'screen' => $post_types ) );
+        }
     }
 }
