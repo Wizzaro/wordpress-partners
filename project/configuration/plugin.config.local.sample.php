@@ -2,7 +2,7 @@
 /*
  * This is sample configuration for wizzaro partners plugin
  * In this place you can replace original configuration, add new post types etc.
- * Add this configuration to ../wp-content/wizzaro-partners/plugin.config.local.php file
+ * Add this configuration to ../wp-content/wizzaro/plugins/partners/plugin.config.local.php file
  */
 namespace Wizzaro\Partners;
 

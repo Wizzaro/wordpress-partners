@@ -11,7 +11,7 @@ class Plugin extends AbstractPluginBootstrap {
     protected function _get_config_file() {
         $config = include __DIR__ . '/configuration/plugin.config.php';
         
-        $local_config_file = WP_CONTENT_URL . DIRECTORY_SEPARATOR . 'wizzaro-partners' . DIRECTORY_SEPARATOR . 'plugin.config.local.php';
+        $local_config_file = WP_CONTENT_URL . DIRECTORY_SEPARATOR . 'wizzaro' . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'partners' . DIRECTORY_SEPARATOR . 'plugin.config.local.php';
         
         if ( file_exists( $local_config_file ) ) {
             $local_config = include $local_config_file;
