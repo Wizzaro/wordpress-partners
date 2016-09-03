@@ -6,7 +6,7 @@ wp_nonce_field('wizzaro_partners_partner_data_edit_nounce', 'wizzaro_partners_pa
         <?php
         $display_place = $view_data['post_type_option_instance']->get_option( $view_data['post_type_option_instance']->get_prefix() . '-partner-data', 'display_place' );
         
-        if ( $view_data['supports']['content'] === true || in_array( $display_place, array( 'before', 'after' ) ) ) {
+        if ( $view_data['supports']['content'] === true && in_array( $display_place, array( 'before', 'after' ) ) ) {
             ?>
             <ul>
                 <li>
