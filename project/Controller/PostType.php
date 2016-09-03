@@ -112,6 +112,10 @@ class PostType extends AbstractPluginController {
             if ( array_key_exists( 'admin_menu_icon', $post_type_settings ) ) {
                 $args['menu_icon'] = $post_type_settings['admin_menu_icon'];
             }
+            
+            if ( array_key_exists( 'menu_position', $post_type_settings ) ) {
+                $args['menu_position'] = $post_type_settings['menu_position'];
+            }
 
             PostTypesCollection::get_instance()->add_post_type( $post_type, $post_type_instance );
             

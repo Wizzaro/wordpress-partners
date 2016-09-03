@@ -54,6 +54,7 @@ return array(
             )
         ),
         'admin_menu_icon' => 'dashicons-groups',
+        //'menu_position' => 5
         'setting_page_config' => array(
             'page_title' => __('Partners Settings', 'wizzaro-partners'),
             'menu_title' => __('Partners Settings', 'wizzaro-partners'),
