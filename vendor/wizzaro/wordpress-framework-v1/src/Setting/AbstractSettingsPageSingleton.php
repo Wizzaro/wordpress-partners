@@ -7,10 +7,6 @@ class AbstractSettingsPageSingleton extends AbstractSettingsPage {
     
     private static $_instances = array();
     
-    protected function __construct() {
-        parent::__construct();    
-    }
-    
     protected function __clone() {}
     
     public static function create() {

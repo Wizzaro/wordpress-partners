@@ -7,10 +7,6 @@ abstract class AbstractOptionSingleton extends AbstractOption {
     
     private static $_instances = array();
     
-    protected function __construct() {
-        parent::__construct();    
-    }
-    
     protected function __clone() {}
     
     public static function create() {
