@@ -173,7 +173,9 @@ class Slider extends AbstractPluginController {
                 'elements' => $elements->getElements()
             );
             
-            if ( $this->is_themes_view_exist( 'shordcode-slider' ) ) {
+            if ( $this->is_themes_view_exist( 'shordcode-slider-' . $post->post_type ) ) {
+                $view = $this->get_themes_view( 'shordcode-slider-' . $post->post_type, $view_data );
+            } elseif ( $this->is_themes_view_exist( 'shordcode-slider' ) ) {
                 $view = $this->get_themes_view( 'shordcode-slider', $view_data );
             } else {
                 $view = $this->get_view( 'shordcode-slider', $view_data );
