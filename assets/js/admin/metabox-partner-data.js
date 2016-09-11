@@ -1,0 +1,1 @@
+jQuery(document).ready(function(a){a("#wizzaro-partners-partner-data.postbox .wppd-ma-add-item a").on("click",function(b){b.preventDefault(),b.stopPropagation();var c=a(this).parents(".wppd-multiple-attrs").first();if(c.length>0){var d=c.find(".wppd-ma-item").first();d.length>0&&(d=d.clone(),d.find("input").val(""),c.find(".wppd-ma-items").append(d))}})});

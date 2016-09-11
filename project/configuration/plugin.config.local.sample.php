@@ -136,6 +136,8 @@ return array(
                 'my_attribute' => array(
                     //Define whether the attribute is to be used (if false then this attribute will be no show in admin panel and front view) 
                     'use' => true,
+                    //Define whether the attribute is multiple
+                    'multiple' => true,
                     /**
                      * Your attribute type (text|address|phone|email|url)
                      * Selected type is important when editing and display attribute data

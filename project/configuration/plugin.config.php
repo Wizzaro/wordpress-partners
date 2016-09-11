@@ -86,6 +86,7 @@ return array(
                 ),
                 'phone' => array(
                     'use' => true,
+                    //'multiple' => true,
                     'type' => 'phone',
                     'title' => __('Phone', 'wizzaro-partners'),
                     'placeholder' =>  __('Add phone', 'wizzaro-partners')

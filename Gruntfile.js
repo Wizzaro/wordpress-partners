@@ -33,6 +33,16 @@ module.exports = function (grunt) {
                     outputStyle: 'compressed',
                     environment: 'production'
                 }
+            },
+            admin_metabox_partner_data: {                   
+                options: {            
+                    config: 'assets-dev/admin/sass/metabox-partner-data/config.rb',
+                    specify: [
+                        'assets-dev/admin/sass/metabox-partner-data/metabox-partner-data.scss',
+                    ],
+                    outputStyle: 'compressed',
+                    environment: 'production'
+                }
             }
         },
         //----------------------------------------
@@ -56,6 +66,13 @@ module.exports = function (grunt) {
                     
                 ],
                 dest: 'assets/js/admin/metabox-elements.js'
+            },
+            admin_metabox_partner_data: {
+                src: [
+                    'assets-dev/admin/js/metabox-partner-data/main.js',
+                    
+                ],
+                dest: 'assets/js/admin/metabox-partner-data.js'
             }
         },
         //----------------------------------------
@@ -79,6 +96,14 @@ module.exports = function (grunt) {
                         'assets-dev/admin/js/metabox-elements/entity/*.js',
                         'assets-dev/admin/js/metabox-elements/collections/*.js',
                         'assets-dev/admin/js/metabox-elements/view/*.js'
+                    ],
+                    
+                },
+            },
+            admin_metabox_partner_data: {
+                files: {
+                    'assets/js/admin/metabox-partner-data.js': [
+                        'assets-dev/admin/js/metabox-partner-data/main.js',
                     ],
                     
                 },
@@ -130,6 +155,21 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['concat:admin_metabox_elements']
             },
+            admin_css_metabox_partner_data: {
+                files: [
+                    'assets-dev/admin/sass/metabox-partner-data/metabox-partner-data.scss',
+                    'assets-dev/admin/sass/metabox-partner-data/*.scss',
+                    'assets-dev/admin/sass/metabox-partner-data/*/*.scss',
+                    'assets-dev/admin/sass/metabox-partner-data/*/*/*.scss',
+                ],
+                tasks: ['compass:admin_metabox_partner_data']
+            },
+            admin_js_metabox_partner_data: {
+                files: [
+                    'assets-dev/admin/js/metabox-partner-data/main.js',
+                ],
+                tasks: ['concat:admin_metabox_partner_data']
+            },
         }
     });
 
@@ -144,6 +184,9 @@ module.exports = function (grunt) {
     
     grunt.registerTask('liveupdate_admin_metabox_elements_css', ['watch:admin_css_metabox_elements']);
     grunt.registerTask('liveupdate_admin_metabox_elements_js', ['watch:admin_js_metabox_elements']);
+    
+    grunt.registerTask('liveupdate_admin_metabox_partner_data_css', ['watch:admin_css_metabox_partner_data']);
+    grunt.registerTask('liveupdate_admin_metabox_partner_data_js', ['watch:admin_js_metabox_partner_data']);
     
     grunt.registerTask('liveupdate_front_slider_css', ['watch:front_slider_css']);
     grunt.registerTask('liveupdate_front_slider_js', ['watch:front_slider_js']);
