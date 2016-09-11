@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wizzaro Partners\n"
-"POT-Creation-Date: 2016-08-29 18:08+0200\n"
-"PO-Revision-Date: 2016-08-29 18:17+0200\n"
+"POT-Creation-Date: 2016-09-11 15:50+0200\n"
+"PO-Revision-Date: 2016-09-11 15:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pl_PL\n"
@@ -47,82 +47,82 @@ msgstr "Ustawienia"
 msgid "Shortcode"
 msgstr ""
 
-#: project/Component/Metabox/PartnerData.php:32
+#: project/Component/Metabox/PartnerData.php:33
 #: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:38
 msgid "Data"
 msgstr "Dane"
 
-#: project/Controller/Lists.php:48 project/Controller/Lists.php:50
+#: project/Controller/Lists.php:44 project/Controller/Lists.php:46
 msgid "Lists "
 msgstr "Listy"
 
-#: project/Controller/Lists.php:49
+#: project/Controller/Lists.php:45
 msgid "List "
 msgstr "Lista"
 
-#: project/Controller/Lists.php:51
+#: project/Controller/Lists.php:47
 msgid "Add List"
 msgstr "Nowa lista"
 
-#: project/Controller/Lists.php:52
+#: project/Controller/Lists.php:48
 msgid "Add New List"
 msgstr "Dodaj nową listę"
 
-#: project/Controller/Lists.php:53 project/Controller/Lists.php:54
+#: project/Controller/Lists.php:49 project/Controller/Lists.php:50
 msgid "Edit List"
 msgstr "Edytuj listę"
 
-#: project/Controller/Lists.php:55
+#: project/Controller/Lists.php:51
 msgid "New List"
 msgstr "Nowa lista"
 
-#: project/Controller/Lists.php:56
+#: project/Controller/Lists.php:52
 msgid "No Lists found"
 msgstr "Nie istnieje żadna zdefiniowana Lista"
 
-#: project/Controller/Lists.php:57
+#: project/Controller/Lists.php:53
 msgid "No Lists found in trash"
 msgstr "Nie znaleziono żadnej Listy w koszu"
 
-#: project/Controller/PostType.php:259
+#: project/Controller/PostType.php:296
 #: project/View/wizzaro/partners/component/metabox/list-elements/js-templates.php:117
 #: project/View/wizzaro/partners/component/metabox/slider-elements/js-templates.php:97
 msgid "Error during download elements"
 msgstr "Błąd podczas pobierania elementów"
 
-#: project/Controller/PostType.php:265
+#: project/Controller/PostType.php:302
 msgid "Unknown post type"
 msgstr "Nieznany typ postu."
 
-#: project/Controller/Slider.php:48 project/Controller/Slider.php:50
+#: project/Controller/Slider.php:44 project/Controller/Slider.php:46
 msgid "Sliders "
 msgstr ""
 
-#: project/Controller/Slider.php:49
+#: project/Controller/Slider.php:45
 msgid "Slider "
 msgstr ""
 
-#: project/Controller/Slider.php:51
+#: project/Controller/Slider.php:47
 msgid "Add Slider"
 msgstr "Dodaj slider"
 
-#: project/Controller/Slider.php:52
+#: project/Controller/Slider.php:48
 msgid "Add New Slider"
 msgstr "Dodaj nowy slider"
 
-#: project/Controller/Slider.php:53 project/Controller/Slider.php:54
+#: project/Controller/Slider.php:49 project/Controller/Slider.php:50
 msgid "Edit Slider"
 msgstr "Edytuj slider"
 
-#: project/Controller/Slider.php:55
+#: project/Controller/Slider.php:51
 msgid "New Slider"
 msgstr "Nowy slider"
 
-#: project/Controller/Slider.php:56
+#: project/Controller/Slider.php:52
 msgid "No Sliders found"
 msgstr "Nie istnieje żaden zdefiniowany Slider"
 
-#: project/Controller/Slider.php:57
+#: project/Controller/Slider.php:53
 msgid "No Sliders found in trash"
 msgstr "Nie znaleziono żadnego Slidera w koszu"
 
@@ -238,6 +238,10 @@ msgstr "Dane zostaną automatycznie dodane po wyświetlaniu treści"
 msgid "For display data you can add shordcode: %s in the content"
 msgstr "W celu wyświetlenia danych możesz dodać shordcode: %s w treści"
 
+#: project/View/wizzaro/partners/component/metabox/partner-data/metabox.php:77
+msgid "Add new"
+msgstr "Dodaj"
+
 #: project/View/wizzaro/partners/component/metabox/slider-settings/metabox.php:35
 msgid "Transition speed (ms)"
 msgstr "Prędkość przejścia (ms)"
@@ -332,57 +336,105 @@ msgstr "Slider Partnerów"
 msgid "Partners List"
 msgstr "Lista Partnerów"
 
-#: project/configuration/plugin.config.local.sample.php:58
 #: project/configuration/plugin.config.local.sample.php:59
-#: project/configuration/plugin.config.php:65
+#: project/configuration/plugin.config.local.sample.php:60
 #: project/configuration/plugin.config.php:66
+#: project/configuration/plugin.config.php:67
 msgid "Partners Settings"
 msgstr "Ustawienia partnerów"
 
-#: project/configuration/plugin.config.local.sample.php:64
-#: project/configuration/plugin.config.php:71
+#: project/configuration/plugin.config.local.sample.php:65
+#: project/configuration/plugin.config.php:72
 msgid "Partner Data"
 msgstr "Dane partnera"
 
-#: project/configuration/plugin.config.local.sample.php:76
-#: project/configuration/plugin.config.php:83
+#: project/configuration/plugin.config.local.sample.php:77
+#: project/configuration/plugin.config.php:84
 msgid "Address"
 msgstr "Adres"
 
-#: project/configuration/plugin.config.local.sample.php:77
-#: project/configuration/plugin.config.php:84
+#: project/configuration/plugin.config.local.sample.php:78
+#: project/configuration/plugin.config.php:85
 msgid "Add address"
 msgstr "Dodaj adres"
 
-#: project/configuration/plugin.config.local.sample.php:82
-#: project/configuration/plugin.config.php:89
+#: project/configuration/plugin.config.local.sample.php:83
+#: project/configuration/plugin.config.php:91
 msgid "Phone"
 msgstr "Telefon"
 
-#: project/configuration/plugin.config.local.sample.php:83
-#: project/configuration/plugin.config.php:90
+#: project/configuration/plugin.config.local.sample.php:84
+#: project/configuration/plugin.config.php:92
 msgid "Add phone"
 msgstr "Dodaj telefon"
 
-#: project/configuration/plugin.config.local.sample.php:88
-#: project/configuration/plugin.config.php:95
+#: project/configuration/plugin.config.local.sample.php:89
+#: project/configuration/plugin.config.php:97
 msgid "E-mail"
 msgstr "E-mail"
 
-#: project/configuration/plugin.config.local.sample.php:89
-#: project/configuration/plugin.config.php:96
+#: project/configuration/plugin.config.local.sample.php:90
+#: project/configuration/plugin.config.php:98
 msgid "Add e-mail"
 msgstr "Dodaj adres e-mail"
 
-#: project/configuration/plugin.config.local.sample.php:94
-#: project/configuration/plugin.config.php:101
+#: project/configuration/plugin.config.local.sample.php:95
+#: project/configuration/plugin.config.php:103
 msgid "Website URL"
 msgstr "Link do strony internetowej"
 
-#: project/configuration/plugin.config.local.sample.php:95
-#: project/configuration/plugin.config.php:102
+#: project/configuration/plugin.config.local.sample.php:96
+#: project/configuration/plugin.config.php:104
 msgid "Add website URL"
 msgstr "Dodaj adres strony internetowej"
+
+#: project/configuration/plugin.config.php:113
+msgid "Partner Categories "
+msgstr ""
+
+#: project/configuration/plugin.config.php:114
+msgid "Partner Category "
+msgstr ""
+
+#: project/configuration/plugin.config.php:115
+msgid "All Categories"
+msgstr ""
+
+#: project/configuration/plugin.config.php:116
+msgid "Edit Category"
+msgstr ""
+
+#: project/configuration/plugin.config.php:117
+msgid "View Category"
+msgstr ""
+
+#: project/configuration/plugin.config.php:118
+msgid "Update Category"
+msgstr ""
+
+#: project/configuration/plugin.config.php:119
+msgid "Add New Category"
+msgstr ""
+
+#: project/configuration/plugin.config.php:120
+msgid "New Category Name"
+msgstr ""
+
+#: project/configuration/plugin.config.php:121
+msgid "Parent Category"
+msgstr ""
+
+#: project/configuration/plugin.config.php:122
+msgid "Parent Category:"
+msgstr ""
+
+#: project/configuration/plugin.config.php:123
+msgid "Search Categories"
+msgstr ""
+
+#: project/configuration/plugin.config.php:124
+msgid "No categories found."
+msgstr ""
 
 #: vendor/wizzaro/wordpress-framework-v1/src/Views/settings-page/fields/admin-field-wp-page.php:2
 msgid "----"
