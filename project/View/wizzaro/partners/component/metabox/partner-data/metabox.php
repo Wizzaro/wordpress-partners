@@ -79,10 +79,16 @@ wp_nonce_field('wizzaro_partners_partner_data_edit_nounce', 'wizzaro_partners_pa
                             </div>
                         </li>
                         <?php
-                    } else {
+                    } elseif( is_string( $view_data['partner_data']->$attribute_key ) ) {
                         ?>
                         <li>
                             <input class="large-text" name="<?php echo $name; ?>" type="text" value="<?php echo esc_attr( $view_data['partner_data']->$attribute_key ); ?>" placeholder="<?php echo $attribute_settings['placeholder']; ?>">
+                        </li>
+                        <?php
+                    } else {
+                        ?>
+                        <li>
+                            <input class="large-text" name="<?php echo $name; ?>" type="text" value="" placeholder="<?php echo $attribute_settings['placeholder']; ?>">
                         </li>
                         <?php
                     }

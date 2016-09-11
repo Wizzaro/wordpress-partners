@@ -34,7 +34,7 @@
                     </div>
                     <?php
                 }
-            } else {
+            } elseif( is_string( $view_data['partner_data']->$attribute_key ) && mb_strlen( $view_data['partner_data']->$attribute_key ) > 0 ) {
                 ?>
                 <div class="wpd-item">
                     <strong><?php echo $attribute_settings['title'] ?>:</strong>
