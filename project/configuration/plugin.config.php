@@ -24,24 +24,30 @@ return array(
         ),
         'default_post_type' => array(
             'post_type' => 'wizzaro-partners',
-            'slug' => 'partners',
-            'labels'=> array(
-                'name'                  => __( 'Partners', 'wizzaro-partners' ),
-                'singular_name'         => __( 'Partner', 'wizzaro-partners' ),
-                'menu_name'             => __( 'Partners', 'wizzaro-partners' ),
-                'add_new'               => __( 'Add Partner', 'wizzaro-partners' ),
-                'add_new_item'          => __( 'Add New Partner', 'wizzaro-partners' ),
-                'edit'                  => __( 'Edit Partner', 'wizzaro-partners' ),
-                'edit_item'             => __( 'Edit Partner', 'wizzaro-partners' ),
-                'new_item'              => __( 'New Partner', 'wizzaro-partners' ),
-                'not_found'             => __( 'No Partners found', 'wizzaro-partners' ),
-                'not_found_in_trash'    => __( 'No Partners found in trash', 'wizzaro-partners' ),
-                'featured_image'        => __( 'Logo', 'wizzaro-partners' ),
-                'set_featured_image'    => __( 'Set logo', 'wizzaro-partners' ),
-                'remove_featured_image' => __( 'Remove logo', 'wizzaro-partners' ),
-                'use_featured_image'    => __( 'Use as logo', 'wizzaro-partners' ),
-            ),
             'public' => true,
+            'args' => array(
+                'public' => true,
+                'labels'=> array(
+                    'name'                  => __( 'Partners', 'wizzaro-partners' ),
+                    'singular_name'         => __( 'Partner', 'wizzaro-partners' ),
+                    'menu_name'             => __( 'Partners', 'wizzaro-partners' ),
+                    'add_new'               => __( 'Add Partner', 'wizzaro-partners' ),
+                    'add_new_item'          => __( 'Add New Partner', 'wizzaro-partners' ),
+                    'edit'                  => __( 'Edit Partner', 'wizzaro-partners' ),
+                    'edit_item'             => __( 'Edit Partner', 'wizzaro-partners' ),
+                    'new_item'              => __( 'New Partner', 'wizzaro-partners' ),
+                    'not_found'             => __( 'No Partners found', 'wizzaro-partners' ),
+                    'not_found_in_trash'    => __( 'No Partners found in trash', 'wizzaro-partners' ),
+                    'featured_image'        => __( 'Logo', 'wizzaro-partners' ),
+                    'set_featured_image'    => __( 'Set logo', 'wizzaro-partners' ),
+                    'remove_featured_image' => __( 'Remove logo', 'wizzaro-partners' ),
+                    'use_featured_image'    => __( 'Use as logo', 'wizzaro-partners' ),
+                ),
+                'menu_icon' => 'dashicons-groups',
+                'rewrite' => array(
+                    'slug' => 'partners',
+                )
+            ),
             'use_sliders' => true,
             'sliders_settings' => array(
                 'post_type' => 'wizzaro-partners-s',
@@ -60,8 +66,6 @@ return array(
                     'name' => __( 'Partners List', 'wizzaro-partners' )
                 )
             ),
-            'admin_menu_icon' => 'dashicons-groups',
-            //'menu_position' => 100,
             'setting_page_config' => array(
                 'page_title' => __('Partners Settings', 'wizzaro-partners'),
                 'menu_title' => __('Partners Settings', 'wizzaro-partners'),
@@ -72,10 +76,6 @@ return array(
                     'name' => __( 'Partner Data', 'wizzaro-partners' ),
                     'slug' => 'partner-data'
                 )
-            ),
-            'supports' => array(
-                'logo' => true,
-                'content' => true,
             ),
             'partner_data_attributes' => array(
                 'address' => array(
@@ -112,7 +112,7 @@ return array(
                     'labels' => array(
                         'name'                  => __( 'Partner Categories ', 'wizzaro-partners' ),
                         'singular_name'         => __( 'Partner Category ', 'wizzaro-partners' ),
-                        'all_items'             => __( 'All Categories' ), 
+                        'all_items'             => __( 'All Categories' ),
                         'edit_item'             => __( 'Edit Category' ),
                         'view_item'             => __( 'View Category' ),
                         'update_item'           => __( 'Update Category' ),
