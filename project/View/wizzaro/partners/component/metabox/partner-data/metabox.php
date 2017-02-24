@@ -45,6 +45,13 @@ wp_nonce_field('wizzaro_partners_partner_data_edit_nounce', 'wizzaro_partners_pa
                         <label><?php echo $attribute_settings['title'] ?></label>
                     </li>
                     <?php
+                    if ( array_key_exists( 'description', $attribute_settings ) && mb_strlen( $attribute_settings['description'] ) > 0 ) {
+                        ?>
+                        <li>
+                            <em><?php echo $attribute_settings['description']; ?></em>
+                        </li>
+                        <?php
+                    }
 
                     $name = 'wizzaro_partners_parner[' . $attribute_key . ']';
 
